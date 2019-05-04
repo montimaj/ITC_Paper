@@ -1,10 +1,13 @@
 \documentclass[review]{elsarticle}
 
-\usepackage{lineno,hyperref, graphicx, amsmath}
+\usepackage{lineno,hyperref, graphicx, amsmath, esvect, amssymb, ragged2e}
 \usepackage[labelformat=simple]{subcaption}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \modulolinenumbers[5]
-
+      
 \journal{Int J Appl Earth Obs Geoinformation}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -45,6 +48,7 @@
 \hbadness=10000
 \sloppy
 
+\DeclareMathOperator{\sinc}{sinc}
 \begin{document}
 
 \begin{frontmatter}
@@ -105,7 +109,7 @@ band or below) penetrate through dry snow whereby the underneath frozen soil or 
     \label{fig:concept}
 \end{figure}
 
-A polarimetric SAR system utilises the polarised radar echoes to obtain information about the specific scattering mechanism for a particular target. In essence, by using a coherent analysis which incorporates the phase of different polarimetric channels, it is possible to differentiate various scattering mechanisms \citep{Lee2009}. Nowadays, PolSAR based algorithms that work on the polarimetric backscatter signal have been widely adopted for various snow related applications such as the classification of dry and wet snow, measuring snow wetness and snow density \citep{Singh2017, Snehmani2010, Thakur2012, Thakur2017, Usami2016}. In this context, the roll-invariant entropy-anisotropy-alpha (H-A-$\alpha$) decomposition and Wishart classification have been successfully tested to classify different snow types as well as demarcate snow covered areas \citep{Cloude2010,Lee2009,Singh2014}. A few years back, the use of spaceborne PolSAR for snow height determination had been introduced, wherein the relationship between the copolar phase difference (CPD) and fresh snow depth (FSD) is quantitatively analysed by deriving a theoretical model \citep{Leinss2014}. However, the major challenge in this approach lies in accurately modelling the anisotropic effective permittivity of dry snow which is dependent on the depolarisation factor (calculated by fixing the shape of the ice grain) and ice grains’ volume fraction (measured using snow density).
+A polarimetric SAR system utilises the polarised radar echoes to obtain information about the specific scattering mechanism for a particular target. In essence, by using a coherent analysis which incorporates the phase of different polarimetric channels, it is possible to differentiate various scattering mechanisms \citep{Lee2009}. Nowadays, PolSAR based algorithms that work on the polarimetric backscatter signal have been widely adopted for various snow related applications such as the classification of dry and wet snow, measuring snow wetness and snow density \citep{Singh2017, Snehmani2010, Thakur2012, Thakur2017, Usami2016}. In this context, the roll-invariant entropy-anisotropy-alpha ($H/A/{\alpha}$) decomposition and Wishart classification have been successfully tested to classify different snow types as well as demarcate snow covered areas \citep{Cloude2010,Lee2009,Singh2014}. A few years back, the use of spaceborne PolSAR for snow height determination had been introduced, wherein the relationship between the copolar phase difference (CPD) and fresh snow depth (FSD) is quantitatively analysed by deriving a theoretical model \citep{Leinss2014}. However, the major challenge in this approach lies in accurately modelling the anisotropic effective permittivity of dry snow which is dependent on the depolarisation factor (calculated by fixing the shape of the ice grain) and ice grains’ volume fraction (measured using snow density).
 
 Interferometric SAR techniques find significant usage in the cryosphere domain and have been used to construct highly accurate digital elevation models (DEMs), measure dry snow depth and SWE in several studies \citep{Guneriussen2001, Lei2016, Leinss2015, Li2017, Liu2017}. The principle of SAR interferometry builds upon measured phase differences between radar images of the same area acquired at different temporal instances (repeat-pass) or different viewing geometries but same epoch (single-pass) \citep{Hanssen2001}. Still, the inherent problems of spatial and temporal decorrelations and atmospheric inhomogeneities are the primary limiting factors in the studies involving InSAR and its variant D-InSAR (Differential InSAR) \citep{Pepe2017}. While spatial decorrelation is caused by large perpendicular baselines \citep{Pepe2017}, the problem of temporal decorrelation arises due to the change in the surface over time \citep{Leinss2018, Leinss2015}. Moreover, the atmospheric noise occurs owing to the variation in the water vapour distribution in the atmosphere \citep{Hanssen2001}. These factors are responsible for inaccurate and low-coherence measurements, thereby leading to a potential decrease in the accuracy of the final results. In cryosphere research, the loss of coherence in InSAR is heavily influenced by the snow humidity, melting, and refreezing and is also susceptible to the variations in both spatial and temporal baselines. Although data assimilation algorithms like 3DVAR (three dimensional variation) and EnKF (Ensemble Kalman Filter) have been applied to the produced outputs of the SD inversion models for minimizing the effect of temporal decorrelation, the applicability and feasibility of such algorithms remains untested on varying data sets and study areas \citep{Liu2017}.
 
@@ -120,7 +124,7 @@ This manuscript is compartmentalised into five sections each consisting of sever
 
 \subsection{Chosen Study Area}
 \subsubsection{Geographical Situation}
-
+\label{sssec:geo}
 The Beas river watershed near Manali, India is part of the north-western Himalayas. Naturally, steep slopes and dense forests are prominent in this region. The elevation typically varies from nearly 2500 m to more than 5000 m in some places as observed in the reference ALOS PALSAR DEM (Figure \ref{fig:overview}). 
 
 \begin{figure}[htb]
@@ -133,7 +137,7 @@ The Beas river watershed near Manali, India is part of the north-western Himalay
 In this work, a small region ($\sim$ 96 km\textsuperscript{2}) of the Beas basin is chosen which starts a few kilometres uphill from Dhundi up to Kothi (shown in Figure \ref{fig:overview}). These areas receive substantial seasonal snowfall which begins in December and lasts till late March. However, the cold, dry season usually commences from late September or early October. The coldest period is in January during which the temperatures reach a daily minimum of -15$^\circ$C on an average. The summers are mild to occasionally warm with June being the hottest month (mean and maximum temperatures of 20$^\circ$C and 30$^\circ$C respectively are common). Apart from this, significant rainfall occurs between late June and September (monsoon season) with August receiving the maximum precipitation \citep{Majumdar2019, Thakur2012}.
 
 \subsubsection{Field Visit}
-
+\label{sssec:field}
 Intensive fieldwork had been conducted from October 14-21, 2018 in the Dhundi and Kothi areas where several Differential Global Positioning System (DGPS) measurements were acquired using the Leica Viva GS 10 \citep{LeicaGeosystemsAG2012} with adequate horizontal positional accuracies ($\sim$7 cm) \citep{Majumdar2019}. Due to the complex terrains, most of the DGPS readings had been obtained through the kinematic mode \citep{Luo2014}. However, in some of the convenient places such as the Dhundi base station and near the Kothi Automatic Weather Station (AWS), the static mode was used \citep{LeicaGeosystemsAG2012}. Eventually, elevation information from these DGPS points have been compared with the ALOS PALSAR DEM, the details of which are provided in section \ref{sec:res}. Furthermore, the manual snow readings from 2014-2018 (snow depth, density, weather profile and other relevant data) which are maintained by the security personnel daily at Dhundi had been pagewise photographed using a smartphone camera. In order to properly understand and visualise the characteristics of the study area, selected field photographs and their brief description are shown from figures \ref{subfig:gps}-\ref{subfig:stations}.
 
 \begin{figure}[!t]
@@ -178,7 +182,7 @@ Intensive fieldwork had been conducted from October 14-21, 2018 in the Dhundi an
 \end{figure}
 
 \subsection{Datasets Used}
-
+\label{ssec:data}
 Overall twelve Coregistered Single look Slant range Complex (CoSSC) TerraSAR-X (TSX)/TanDEM-X (TDX) bistatic X-band SAR images acquired between December 2015 and August 2017 in stripmap (SM) mode are available over this study area \citep{Balss2012}. In total, there are six Quad-pol data pairs, from which the descending orbital pass acquisition at 00:53 hrs Universal Time Coordinated (UTC), January 8, 2016, has been selected considering the occurrence of fresh snowfall before, during and after the satellite flyby. Moreover, the perpendicular baseline ($B_\bot$) and ambiguity height ($h_{2\pi}$) for this data are 96.34 m and 63.18 m respectively. 
 
 Additionally, the in-situ snow physical parameters’ data (standing and fresh snow depths, snow density) along with the relevant weather data had been transferred to a PostgreSQL database (DB) \citep{PostgreSQL2019} from the photographs of the manual recordings through spreadsheets. Apart from this, the high frequency data (two-minute interval measurements) obtained from the snowpack analyser (SPA) device (installed at Dhundi) had been downloaded and were added to the database as a separate table. Accordingly, the SSDs at 06:22 hrs (00:52 hrs UTC) Indian Standard Time (IST) on January 7, 2016, and 06:22 hrs January 8, 2016 morning were 36.2 cm and 54.9 cm respectively signifying a heavy fresh snowfall event of 18.7 cm within 24 hrs. The manual recordings also showed an FSD of 18 cm on January 8, 2016 morning though the exact measurement time is unspecified in the record book. Apart from this, a forest mask used in the earlier studies of this area \citep{Thakur2012, Thakur2017} has been obtained from the Water
@@ -209,33 +213,30 @@ Since the SAR dataset is already coregistered, separate coregistration step has 
 \label{ssec:fsd}
 \subsubsection{CPD Computation}
 
-The FSD is estimated using the CPD method developed by \cite{Leinss2014}. At first, $\phi_{CPD}$ for the TDX data ($\phi_{CPD,TDX}$) acquired on January 8, 2016, is computed using Eq. \eqref{seq:a} and then an ensemble averaging operation is applied over a 21$\times$21 window \citep{Majumdar2019}. Similarly, $\phi_{CPD}$ for the TSX data ($\phi_{CPD,TSX}$) is calculated following which the average CPD, $\overline{\phi_{CPD}}$ is obtained using Eq. \eqref{seq:b}. Here, $\Im$ and $\Re$ denote the imaginary and real parts of the complex scattering matrices $S_{VV}$ and $S_{HH}$ respectively.
+The FSD is estimated using the CPD method developed by \cite{Leinss2014}. At first, $\phi_{CPD}$ for the TDX data ($\phi_{CPD,TDX}$) acquired on January 8, 2016, is computed using Eq. \eqref{seq:cpd} and then an ensemble averaging operation is applied over a 21$\times$21 window \citep{Majumdar2019}. Similarly, $\phi_{CPD}$ for the TSX data ($\phi_{CPD,TSX}$) is calculated following which the average CPD, $\overline{\phi_{CPD}}$ is obtained using Eq. \eqref{seq:acpd}. Here, $\Im$ and $\Re$ denote the imaginary and real parts of the complex scattering matrices $S_{VV}$ and $S_{HH}$ respectively.
 
 \begin{subequations}
     \centering
-    \label{eq:1}
     \begin{equation}
+        \label{seq:cpd}
         \phi_{CPD} = \phi_{VV} - \phi_{HH} = \left\langle\underbrace{\tan^{-1}\left(\frac{\Im\left(S_{VV}\right)}{\Re\left(S_{VV}\right)}\right)}_{\phi_{VV}} - \underbrace{\tan^{-1}\left(\frac{\Im\left(S_{HH}\right)}{\Re\left(S_{HH}\right)}\right)}_{\phi_{HH}}\right\rangle
-        \label{seq:a}
     \end{equation}
     
     \begin{equation}
+        \label{seq:acpd}
         \overline{\phi_{CPD}} = \frac{\phi_{CPD,TDX} + \phi_{CPD,TSX}}{2}
-        \label{seq:b}
     \end{equation}
 \end{subequations}
 
- $\phi_{CPD}$ can be alternatively defined as the phase angle of the complex copolar coherence, $\widetilde{\gamma_c}$ (since $\gamma$ is the standard notation for coherence amplitude, $\widetilde{\gamma}$ is used for the complex coherence), defined in Eq. \eqref{eq:2}. In this case, the copolar coherence amplitude ($\gamma_c = \lvert\widetilde{\gamma_c}\rvert$) is a measure of the radar backscattering mechanism where low values close to zero (ideally $\gamma_c =$ 0) indicate the presence of volume scattering and high values (ideally $\gamma_c =$ 1) represent surface scattering \citep{Lee2009, Leinss2014, Singh2014}. It should be noted that only the CPD computed from side-looking radar systems is able to describe a target having dielelectrically anisotropic microstructure as in the case of snow \citep{Leinss2014}. 
+ $\phi_{CPD}$ can be alternatively defined as the phase angle of the complex copolar coherence, $\widetilde{\gamma_c}$ (since $\gamma$ is the standard notation for coherence amplitude, $\widetilde{\gamma}$ is used for the complex coherence), defined in Eq. \eqref{eq:2}. In this case, the copolar coherence amplitude ($\gamma_c = \lvert\widetilde{\gamma_c}\rvert$) is a measure of the radar backscattering mechanism where low values close to zero (ideally $\gamma_c =$ 0) indicate the presence of volume scattering and high values (ideally $\gamma_c =$ 1) represent surface scattering \citep{Lee2009, Leinss2014, Singh2014}. It should be noted that only the CPD computed from side-looking radar systems is able to describe a target having dielelectrically anisotropic microstructure as in the case of snow \citep{Leinss2014}. Also, in Eq. \eqref{eq:2}, $j$ is the imaginary unit. 
 
 \begin{equation}
-        \widetilde{\gamma_c} = \frac{\left\langle S_{VV}S_{HH}^*\right\rangle}{\sqrt{\left\langle S_{VV}S_{VV}^*\right\rangle\left\langle S_{HH}S_{HH}^*\right\rangle}} = \gamma_ce^{j\phi_{CPD}}, \gamma_c \in [0, 1]
-        \label{eq:2}
+    \label{eq:2}
+    \widetilde{\gamma_c} = \frac{\left\langle S_{VV}S_{HH}^*\right\rangle}{\sqrt{\left\langle S_{VV}S_{VV}^*\right\rangle\left\langle S_{HH}S_{HH}^*\right\rangle}} = \gamma_ce^{j\phi_{CPD}}, \gamma_c \in [0, 1]
 \end{equation}
-
 \subsubsection{Calculating the Depolarisation Factors}
 
-In order to model this snow anisotropy, an ice particle needs to be associated with a specific shape. It has been observed that fresh snow and old snow exhibit horizontally aligned (oblate) and vertically aligned (prolate) spheroidal structures respectively \citep{Leinss2014}. Moreover, a shape parameter, known as the depolarisation factor, also has to be considered in this context \citep{Leinss2014, Sihvola1999}. In principle, a single spheroidal particle is characterised by three dipoles corresponding to the three orthogonal axes ($a_x$ , $a_y$ , and $a_z$) represented using a 3D ($x$, $y$, $z$) Cartesian coordinate system. This is depicted in Figure \ref{fig:prolate}, where the prolate shaped ice grain is linked with the radar reference frame ($h$, $k$, $v$) following the radar backscattering alignment (BSA) convention, $k$ being the propagation vector, $h$ and $v$
-are the wave components of the horizontal and vertical polarisations respectively. Also, $\theta$ is the mean incidence angle with respect to the surface normal \citep{Leinss2014, Parrella2013}. 
+In order to model this snow anisotropy, an ice particle needs to be associated with a specific shape. It has been observed that fresh snow and old snow exhibit horizontally aligned (oblate) and vertically aligned (prolate) spheroidal structures respectively \citep{Leinss2014}. Moreover, a shape parameter, known as the depolarisation factor, also has to be considered in this context \citep{Leinss2014, Sihvola1999}. In principle, a single spheroidal particle is characterised by three dipoles corresponding to the three orthogonal axes ($a_x$ , $a_y$ , and $a_z$) represented using a 3D ($x$, $y$, $z$) Cartesian coordinate system. This is depicted in Figure \ref{fig:prolate}, where the prolate shaped ice grain is linked with the radar reference frame ($h$, $k$, $v$) following the radar backscattering alignment (BSA) convention, $k$ being the propagation vector, $h$ and $v$ are the wave components of the horizontal and vertical polarisations respectively. Also, $\theta$ is the mean incidence angle with respect to the surface normal \citep{Leinss2014, Parrella2013}. 
 
 \begin{figure}[htb]
     \centering
@@ -244,14 +245,14 @@ are the wave components of the horizontal and vertical polarisations respectivel
     \label{fig:prolate}
 \end{figure}
 
-So, by fixing a particle shape, the three depolarisation factors, $N_i$ ($\forall i \in {x, y, z}$), can be obtained by
+So, by fixing a particle shape, the three depolarisation factors, $N_i$ ($\forall i \in \{x, y, z\}$), can be obtained by
 solving the surface integral ($s$ is the ellipsoidal surface) as shown in Eq. \eqref{eq:3}.
 
 \begin{equation}
+    \label{eq:3}
 	N_i =\frac{a_xa_ya_z}{2}\int_0^\infty\frac{\mathrm{d}s}{(s+a_i^2)\sqrt{(s+a_x^2)(s+a_y^2)(s+a_z^2)}}
-	\label{eq:3}
 \end{equation}
-\begin{center}\text{where, $N_x + N_y + N_z = 1$}\end{center}
+where, $N_x + N_y + N_z = 1$
 
 For a perfectly spherical shape, all three depolarisation factors are equal to 1/3. The two other special
 cases include disk (1, 0, 0) and needle (0, 1/2, 1/2). In cases of prolate and oblate spheroids, the closed
@@ -262,31 +263,32 @@ is the reverse. However, for general ellipsoids having different axes, the above
 be explicitly solved.
 
 \begin{equation}
+    \label{eq:4}
 	N_z = \begin{cases} 
           \frac{1 - e_1^2}{2e_1^3}\left(\ln{\frac{1 + e_1}{1 - e_1} - 2e_1}\right) &, a_z > a_x = a_y \\
           \frac{1 + e_2^2}{e_2^3}\left(e_2 - \tan^{-1}e_2\right) &, a_z < a_x = a_y
        \end{cases}
-	\label{eq:4}
 \end{equation}
 
 \subsubsection{Computing the Snow Refractive Indices}
 
-Evidently, the Maxwell-Garnett theory related to electromagnetic mixing models can be applied to a medium (here snow) consisting of both air and ice which are having relative permittivities, $\epsilon_{air}$ and $\epsilon_{ice}$ respectively. Therefore, the effective permittivity of this mixed medium, $\epsilon_{eff, i}$, is anisotropic and given by Eq. \eqref{eq:5} \citep{Leinss2014, Sihvola1999}. Here, the particle volume fraction ($f_{vol}$) is dependent on the fresh snow density ($\rho_f$)and ice density ($\rho_{ice}$). 
+Evidently, the Maxwell-Garnett theory related to electromagnetic mixing models can be applied to a medium (here snow) consisting of both air and ice which are having relative permittivities (real part), $\epsilon_{air}$ and $\epsilon_{ice}$ respectively. Therefore, the effective permittivity of this mixed medium, $\epsilon_{eff, i}$, is anisotropic and given by Eq. \eqref{eq:5} \citep{Leinss2014, Sihvola1999}. Here, the particle volume fraction ($f_{vol}$) is dependent on the fresh snow density ($\rho_f$)and ice density ($\rho_{ice}$). 
 
 \begin{equation}
+    \label{eq:5}
 	\epsilon_{eff, i} = \epsilon_{air}\left[1 + f_{vol}\frac{\epsilon_{ice} - \epsilon_{air}}{\epsilon_{air} + \left(1 - f_{vol}\right)N_i\left(\epsilon_{ice} - \epsilon_{air}\right)}\right]
-	\label{eq:5}
 \end{equation}
-\begin{center}where, $f_{vol} = \rho_f / {\rho_{ice}}, \rho_{ice} = 0.917 \text{ g/cm\textsuperscript{3}, and } i \in {x, y, z}$\end{center}
+where, $f_{vol} = \rho_f / {\rho_{ice}}, \rho_{ice} = 0.917 \text{ g/cm\textsuperscript{3}}, \epsilon_{air} = 1.00059, \epsilon_{ice} = 3.179, \text{ and } i \in \{x, y, z\}$
 
 Furthermore, the refractive indices of this birefringent (or birefractive) medium, $n_H$ and $n_V$ corresponding to the HH and VV polarisations respectively, are dependent on this anisotropic effective permittivity \citep{Leinss2014}. In addition, since the snow anisotropy is assumed to be oriented along the Earth’s gravitational field, $n_H$ remains constant whereas $n_V$ is dependent on the incidence angle $\theta$ as given by Eq. \eqref{seq:nh} and Eq. \eqref{seq:nv} respectively \citep{Leinss2016}. Also, the imaginary part of the effective permittivity is negligible in the case of dry snow (fresh snow is also dry), and therefore, it is not used in the model developed by \cite{Leinss2014}.
 
 \begin{subequations}
     \centering
-    \label{eq:6}
     \begin{align}
-        n_H^2 &= \epsilon_{eff, x} \label{seq:nh}\\
-        n_V^2 &= \epsilon_{eff, y}\cos^2\theta + \epsilon_{eff, z}\sin^2\theta \label{seq:nv} 
+        \label{seq:nh}
+        n_H^2 &= \epsilon_{eff, x}\\
+        \label{seq:nv}
+        n_V^2 &= \epsilon_{eff, y}\cos^2\theta + \epsilon_{eff, z}\sin^2\theta 
     \end{align}
 \end{subequations}
 where, $\epsilon_{eff, x}$ , $\epsilon_{eff, y}$ , and $\epsilon_{eff, z}$ represent the effective permittivities of fresh snow in $x$, $y$, and $z$ directions of a 3D Cartesian co-ordinate system \citep{Leinss2014}.
@@ -297,14 +299,14 @@ Once all these aforementioned parameters are calculated, the CPD based inversion
 
 \begin{equation}
     \centering
-    \Delta{Z_f} = (-1)\frac{\lambda_0\phi_{CPD}}{4\pi\Delta{\zeta}}
     \label{eq:7}
+    \Delta{Z_f} = \left\langle(-1)\frac{\lambda_0\phi_{CPD}}{4\pi\Delta{\zeta}}\right\rangle
 \end{equation}
 \begin{center}where, $\Delta{\zeta} = \sqrt{n^2_V - \sin^{2}\theta_l} - \sqrt{n^2_H - \sin^{2}\theta_l}, \phi_{CPD} > 0, \text{ and } n_H > n_V$\end{center}
 
-Here, the depolarisation factors are calculated by setting the axial ratio, $a_x/a_z = 1.6$ in
+Here, the depolarisation factors are calculated by setting the axial ratio, $a_x/a_z = 1.5$ in
 Eq. \eqref{eq:4} and choosing the snow particle shape as an oblate \citep{Majumdar2019}. After this, the anisotropic
-effective permittivities are computed using Eq. \eqref{eq:5}. Finally, the FSD is obtained from Eq. \eqref{eq:7} wherein an ensemble averaging filter of size 65$\times$65 is applied. The FSWE is obtained by multiplying the FSD with the fresh snow density (i.e, FSWE $ = \Delta{Z_f}\rho_f$)Also, the fresh snow density ($\rho_f = $0.07 g/cm\textsuperscript{3}) which is manually measured at Dhundi, is kept constant for the entire study area along with the copolar coherence threshold, $\tau_c = $ 0 ($\tau_c \in$ [0, 1]), i.e., no thresholding has been applied, but the provision for it is built-in to the implementation. Moreover, as per the TSX/TDX metadata, the radar wavelength, $\lambda_0 ≈ $ 3.11 cm. In this context, the adopted workflow is depicted in Figure \ref{fig:fsd_method}.
+effective permittivities are computed using Eq. \eqref{eq:5}. Finally, the FSD is obtained from Eq. \eqref{eq:7} wherein an ensemble averaging filter of size 65$\times$65 is applied. The FSWE is obtained by multiplying the FSD with the fresh snow density (i.e, FSWE $ = \rho_f\Delta{Z_f}$)Also, the fresh snow density ($\rho_f = $ 0.07 g/cm\textsuperscript{3}) which is manually measured at Dhundi, is kept constant for the entire study area along with the copolar coherence threshold, $\tau_c = $ 0 ($\tau_c \in$ [0, 1]), i.e., no thresholding has been applied on $\gamma_c$ computed using Eq. \eqref{eq:2}, but the provision for it is built-in to the implementation. Moreover, as per the TSX/TDX metadata, the radar wavelength, $\lambda_0 \approx$ 3.11 cm. In this context, the adopted workflow is depicted in Figure \ref{fig:fsd_method}.
 
 \begin{figure}[htb]
     \centering
@@ -315,20 +317,283 @@ effective permittivities are computed using Eq. \eqref{eq:5}. Finally, the FSD i
 
 \subsection{Pol-InSAR based Standing Snow Depth Estimation}
 \label{ssec:ssd}
+
+Standing or old snow refers to the deposited snow on the ground which has accumulated over time \citep{Reynolds1983}. Typically, old snow due to the presence of impurity and temperature-gradient induced recrystallisation process consists of snow particles larger than the microwave wavelength and results in volume scattering \citep{Leinss2016, Riche2013}. This volume decorrelation can be quantitatively analysed with the help of the Pol-InSAR technique \citep{Cloude2010} to obtain the volumetric SSD ($\Delta{Z_s}$). 
+
+\subsubsection{Single-baseline Pol-InSAR Specifics}
+
+The single baseline Pol-InSAR algorithm works on the basis of the complex coherence, $\widetilde{\gamma}\left(\vv{w_1}, \vv{w_2}\right)$, defined in Eq. \eqref{seq:coh} where $I_i\left(\vv{w_1}, \vv{w_2}\right)$ denotes the $i$\textsuperscript{th} pixel coordinate value of the wrapped Pol-InSAR interferogram, $I\left(\vv{w_1}, \vv{w_2}\right)$ obtained in Eq. \eqref{seq:ifg}. This interferogram is calculated from Eq. \eqref{seq:s1} and Eq. \eqref{seq:s2} where the coregistered master ($s_1$) and slave ($s_2$) images are acquired at a given polarisation vector, ($\vv{w}$) respectively. Here, the weight vectors, $\vv{w_1}$ and $\vv{w_2}$ are selected by the user based on the scattering mechanisms at ends 1 and 2 of the interferometric baseline. If $\vv{w_1} = \vv{w_2}$, $\widetilde{\gamma}\left(\vv{w_1}, \vv{w_2}\right)$ can be alternatively specified as $\widetilde{\gamma}\left(\vv{w_1}\right)$ \citep{Cloude2005, Cloude2010}. Moreover, $L$ is the total number of pixels averaged in the range and azimuth directions which can be replaced by the ensemble averaging operation following the statistical ergodicity assumption \citep{Hanssen2001, Hoen2000, Kugler2015, Kumar2017, Papathanassiou2001}. Additionally, $\phi_{flat}^w \in [0, 2\pi)$ is the wrapped flat-earth phase obtained from the estimated absolute flat-earth phase, $\phi_{flat}$ and has to be removed from $I\left(\vv{w_1}, \vv{w_2}\right)$ as shown in Eq. \eqref{seq:ifg}. Also, the calculation of the generalised weight vector, $\vv{w}$ is given by Eq. \eqref{seq:weight}.
+
+\begin{subequations}
+    \centering
+    \begin{align}
+        \label{seq:coh} 
+        & \widetilde{\gamma}\left(\vv{w_1}, \vv{w_2}\right) = \frac{\sum_{i=1}^LI_i\left(\vv{w_1}, \vv{w_2}\right)}{\sqrt{\sum_{i=1}^L\left\lvert s_{1i}\left(\vv{w_1}\right)\right\rvert^2\sum_{i=1}^L\left\lvert s_{2i}\left(\vv{w_2}\right)\right\rvert^2}}, \left\lvert\widetilde{\gamma}\left(\vv{w_1}, \vv{w_2}\right)\right\rvert  \in [0, 1] \\
+        \label{seq:ifg} 
+        & I\left(\vv{w_1}, \vv{w_2}\right) = s_1\left(\vv{w_2}\right)s_2^*\left(\vv{w_2}\right)e^{-j\phi_{flat}^w} \\
+        \label{seq:s1} 
+        & s_1 = w_1^1\frac{s_{hh}^1 + s_{vv}^1}{\sqrt{2}} + w_1^2\frac{s_{hh}^1 - s_{vv}^1}{\sqrt{2}} + w_1^3\sqrt{2}s_{hv}^1 \\
+        \label{seq:s2} 
+        & s_2 = w_2^1\frac{s_{hh}^2 + s_{vv}^2}{\sqrt{2}} + w_2^2\frac{s_{hh}^2 - s_{vv}^2}{\sqrt{2}} + w_2^3\sqrt{2}s_{hv}^2 \\
+        \label{seq:weight}
+        & \vv{w} = \begin{bmatrix}
+                    w^1 & w^2 & w^3
+                    \end{bmatrix}^T = \begin{bmatrix}
+                    \cos\alpha & \sin\alpha \cos{\beta{e}^{j\delta}} & \sin\alpha\sin{\beta{e}^{j\mu}}
+                    \end{bmatrix}^T
+    \end{align}
+\end{subequations}
+where, $s_{pp}^1$ and $s_{pp}^2$ correspond to the master (1) and slave (2) images respectively, $pp \in \{hh, hv, vv\}$,
+and $*$ denotes the complex conjugate operator.
+
+In this case, the parameters, scattering alpha angle ($\alpha$), target orientation angle ($\beta$), phase terms ($\delta$ and $\mu$), are chosen according to the selected polarisation given by Table \ref{table:1}. Here, LL, LR and RR correspond to
+the left circular, left-right circular and right circular polarisations \citep{Cloude2010}. However, it is possible to
+optimise these parameters specific to the data, the details of which are provided by \cite{Cloude2010}.
+
+\begin{table}[ht]
+\centering
+\caption{Pol-InSAR scattering mechanisms \citep{Cloude2005}}
+\label{table:1}
+\begin{tabular}{c c c c c}
+\hline
+\textbf{Polarisation Selection} & \boldmath$\alpha(^\circ)$   & \boldmath$\beta(^\circ)$     & \boldmath$\delta(^\circ)$ & \boldmath$\mu(^\circ)$       \\ \hline
+HH                     & 45 & 0   & 0          & 0   \\ 
+HV                     & 90 & 90  & 0          & 0   \\ 
+VV                     & 45 & 180 & 0          & 0   \\ 
+HH+VV                  & 0  & 0   & 0          & 0   \\ 
+HH-VV                  & 90 & 0   & 0          & 0   \\ 
+LL                     & 90 & 45  & 0          & 90  \\ 
+LR                     & 0  & 0   & 0           & 0   \\ 
+RR                     & 90 & 45  & 0          & -90 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Height Inversion Algorithm Details}
+In this study, the modified (also improved) hybrid DEM differencing and coherence amplitude based Pol-InSAR volumetric height inversion model as given by Eq. \eqref{seq:hybrid_dem} is used for the SSD estimation. Firstly, the volume scattering dominant channels, HV and VH, are averaged to fully utilise the quad-pol data \citep{Cloude2005}. Next, the Pol-InSAR interferogram, $I\left(\vv{w_v}\right)$ has been computed using Eq. \eqref{seq:ifg} wherein, the weight vector, $\vv{w_v}$ is obtained from Table \ref{table:1} for the HV polarisation. Thereafter, the complex volume coherence, $\widetilde{\gamma}\left(\vv{w_v}\right)$, is calculated from Eq. \eqref{seq:coh} with $L$ = 3. Similarly, the complex surface or ground coherence, $\widetilde{\gamma}\left(\vv{w_s}\right)$, is computed by choosing $\vv{w_s}$ as the HH-VV weight vector (Table \ref{table:1}).  
+
+Moreover, the actual vertical wavenumber, $k_z$ , when varied with the LIA, is in the order of 0.1 rad/m with the ambiguity height, $h_{2\pi} = 2\pi/k_z \approx$ 63.18 m, $\lambda_0 \approx$ 3.11 cm and $m$ = 1 (single-pass acquisition). Since the maximum height of the distributed volume scatterer (in this case, standing snow), $\Delta{Z_{s,max}}$, should be similar to $h_{2\pi}$ \citep{Kugler2015, Hajnsek2009, Kumar2017}, $k_z$ has to be rescaled to an optimum range for effectively estimating the SSD. Hence, the modified vertical wavenumber, $k_z^\prime$ , is given by Eq. \eqref{seq:vn} where $\eta^\prime$ is a free scaling parameter which has to be set according to the known $\Delta{Z_{s,max}}$ in the study area. Here, $h_{2\pi}^\prime$ is the scaled height of ambiguity which like that of $h_{2\pi}$ determines the height changes in modulo $2\pi$ \citep{Hanssen2001}. Also, $\mathbb{R}_{>0}^+$ denotes the set of all positive real numbers in the interval $(0, \infty)$. In this work, due to the limited ground-truth data availability and the subsequent ensemble
+averaging operation (window size of 21$\times$21) on $k_z^\prime$ , $\Delta{Z_{s,max}} = $ 12 m has been assumed for which $\eta^\prime = $ 5 is used.
+
+Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and the parameter $m$ is set to 1 for bistatic
+acquisition and 2 in the monostatic case. Also in Eq. \eqref{seq:vn}, $\Delta\theta$ is the change in the incidence angle occuring due to the spatial baseline, $\theta_l$ is the LIA, and $\lambda_0$ is the radar wavelength as before in section \ref{ssec:fsd} \citep{Cloude2010, Kugler2015}.
+
+\begin{subequations}
+    \centering
+    \begin{equation}
+        \label{seq:hybrid_dem}
+        \Delta{Z_s} = \frac{\arg\left(\widetilde{\gamma}\left(\vv{w_v}\right)e^{-j\phi_{topo}^w}\right)}{k_z^\prime} + \eta\frac{\sinc_\pi^{-1}\left(\gamma\left(\vv{w_v}\right)\right)}{k_z^\prime}, \eta\in[0, 1]
+    \end{equation}
+    \begin{flushleft}\text{where,}\end{flushleft}
+    \begin{equation}
+        \label{seq:vn}
+        k_z^\prime = \left\langle\eta^\prime\frac{m\Delta\theta}{\lambda_0\sin\theta_l}\right\rangle, \eta^\prime\in\mathbb{R}_{>0}^+\mid\Delta{Z_{s, max}} \approx h_{2\pi}^\prime = 2\pi/k_z^\prime
+    \end{equation}
+\end{subequations}
+
+Subsequently, the volume and surface coherences are then used to estimate the wrapped ground phase, $\phi_{topo}^w \in [0, 2\pi)$, from Eq. \eqref{eq:topo}. Additionally, a median ensemble filter of 21$\times$21 is applied on the obtained $\phi_{topo}^w$ following the processing steps provided by \cite{Cloude2005}.
+
+\begin{equation}
+    \label{eq:topo}
+    \phi_{topo}^w = \arg\left(\widetilde{\gamma}\left(\vv{w_v}\right) - \widetilde{\gamma}\left(\vv{w_s}\right)\left(1 - L_{\vv{w_s}}\right)\right)
+\end{equation}
+where,
+\begin{align*}
+    & L_{\vv{w_s}} = \frac{-B - \sqrt{B^2 - 4AC}}{2A}, L_{\vv{w_s}} \in [0, 1] \\
+    & A = \left\lvert\widetilde{\gamma}\left(\vv{w_v}\right)\right\rvert^2 - 1 \\
+    & B = 2\Re\left(\widetilde{\gamma}\left(\vv{w_v}\right) - \widetilde{\gamma}\left(\vv{w_s}\right)\widetilde{\gamma}^*\left(\vv{w_v}\right)\right) \\
+    & C = \left\lvert\widetilde{\gamma}\left(\vv{w_v}\right) - \widetilde{\gamma}\left(\vv{w_s}\right)\right\rvert^2
+\end{align*}
+
+Eventually, the SSD ($\Delta{Z_s}$) and SSWE ($=\rho_s\Delta{Z_s}$) are estimated wherein the standing snow density ($\rho_s = $ 0.315 g/cm\textsuperscript{3}) measured by the Dhundi SPA at 06:22 hrs IST on January 8, 2016, has been used. Here, $\eta = $ 0.65, the volume coherence threshold, $\tau_v = $ 0.6 (pixels having $\tau_v < $ 0.6 are neglected $\forall\tau_v \in$ [0, 1]), and the SSD values are averaged based on a 57$\times$57 ensemble filter window. The entire Pol-InSAR workflow is summarised in Figure \ref{fig:ssd_method} which shows the main processing blocks.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Methods/SSD_Method.png}
+    \caption{SSD and SSWE estimation workflow using Pol-InSAR.}
+    \label{fig:ssd_method}
+\end{figure}
+
+However, in order to compute the inverse $\sinc_\pi$ (normalised $\sinc$) function in Eq. \eqref{seq:hybrid_dem}, the \cite{Cloude2010} approximation ($\sinc_C^{-1}$) in Eq. \eqref{seq:un_cloude} is replaced by Eq. \eqref{seq:secant} where the secant method \citep{Cheney2012} has been applied to find $\alpha_r \in \mathbb{R}$ (rad), the desired root or inverse. Moreover, to make the \cite{Cloude2010} approximation compliant with the scientific computing libraries such as SciPy \citep{Jones2001} which use the $\sinc_\pi$ function, the normalised variant of Eq. \eqref{seq:un_cloude} given by Eq. \eqref{seq:ncloude} is incorporated where $\sinc_{\pi_C}^{-1}$ denotes the inverse of the $\sinc_\pi$ function computed using the \cite{Cloude2010} approach. Similarly, $\sinc_{\pi_S}^{-1}$ represents the inverse of the $\sinc_\pi$ function obtained by applying the secant method \citep{Cheney2012, Jones2001}. This root finding technique has been deployed as it is more accurate than the given approximation in Eq. \eqref{seq:ncloude}, the analysis of which is described in section \ref{sec:res}. Still, in the Python implementation, this approximation is used as an initial guess to the secant method for faster convergence. It is also used as a fallback option if the secant method is unable to converge within 50 iterations or the default convergence threshold of 1.4E-8 \citep{Jones2001}.
+
+\begin{subequations}
+    \centering
+    \begin{align}
+        \label{seq:un_cloude}
+        & \sinc_C^{-1}\left(\gamma\left(\vv{w_v}\right)\right) = \pi - 2\sin^{-1}\left(\gamma\left(\vv{w_v}\right)^{0.8}\right) \\
+        \label{seq:secant}
+        & \sinc_\pi\alpha_r  - \gamma\left(\vv{w_v}\right) = 0 \\
+        \label{seq:ncloude}
+        & \sinc_{\pi_C}^{-1}\left(\gamma\left(\vv{w_v}\right)\right) = 1 - \frac{2\sin^{-1}\left(\gamma\left(\vv{w_v}\right)^{0.8}\right)}{\pi}
+    \end{align}
+\end{subequations}
+
 \subsection{Validation, Uncertainty Assessment, and Sensitivity Analysis}
 \label{ssec:vus}
 \subsubsection{Validation Process}
 \label{sssec:val}
+
+One of the significant challenges in this work has been the limited ground-truth data availability. Since, in-situ data from only two ground stations are available, the conventional way of accuracy assessment through regression plots \citep{Kugler2015, Leinss2014, Kumar2017} is infeasible in this context. Moreover, the Kothi AWS area falls in the layover region for the descending pass acquisitions and hence, only the Dhundi region which is free from layover, shadow and foreshortening effects, is used for validation. In this case, a neighbourhood window of size 3$\times$3 ($\approx$ 81 m\textsuperscript{2} ground area) surrounding the Dhundi SPA is selected for validating the processed SD and SWE results by considering only the statistical mean and standard deviation.
+
 \subsubsection{Uncertainty Assessment}
 \label{sssec:ua}
+
+Due to the complex terrain characteristics there exist significant uncertainty sources which could potentially lead to the overall degradation of the output accuracy. Although the winter-time data (January 8, 2016) is fully polarimetric, the summer-time data (June 8, 2017) is dual-pol. So, in order to comparatively understand the backscattering mechanisms in these two scenes, the dual-pol entropy ($H \in$ [0, 1]) and the scattering alpha angle ($\alpha \in$ [0$^\circ$, 90$^\circ$]) or $H/{\alpha}$ decomposition (5$\times$5 window size) is used \citep{Cloude2010, Lee2009, Singh2014}. This is carried out through the $H/{\alpha}$ plane plot which demarcates eight feasible zones (Z9 being the unclassified pixels) based on the different scattering classes as shown in Figure \ref{fig:ha}. It should be noted that, this diagram which follows the SNAP style \citep{ESA2018}, uses slightly different labels as compared to the \cite{Lee2009} $H/{\alpha}$ plane convention where
+the labels Z1, Z2, Z3 are denoted as Z7, Z8, Z9 and vice-versa respectively. However, the scattering mechanisms are exactly the same in both these conventions. Here, the blue curve acts as a boundary to the plane which essentially denotes the reliability of the classification in high entropy conditions \citep{Brunner2009}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Methods/HA.png}
+    \caption{$H/{\alpha}$ plane showing different scattering zones. Z1: Dihedral, Z2: Dipole, Z3: Bragg Surface, Z4: Double
+bounce, Z5: Anisotropic, Z6: Random surface, Z7: Complex structures, Z8: Random anisotropic, Z9: Non-feasible.}
+    \label{fig:ha}
+\end{figure}
+
+The dual-pol $H/{\alpha}$ decomposition is further used by the unsupervised Wishart classifier (ten iterations) which classifies the SAR data based on these scattering mechanisms and a quantitative estimate of the number of pixels in each such class can be obtained \citep{Cloude2010, Lee2009}. Therefore, by knowing the scattering properties, the terrain features present in the study area can be understood along with their changes during the snow season. In turn, these ground features which include rough surfaces, shrubs, boulders, and human settlements reduce the copolar coherence amplitude ($\gamma_c$) thereby leading to underestimated FSD results \citep{Leinss2014, Leinss2016}. In addition, the decrease in the Pol-InSAR surface coherence amplitude, $\left(\gamma\left(\vv{w_v}\right) = \left\lvert\widetilde{\gamma}\left(\vv{w_v}\right)\right\rvert\right)$ may result in overestimated volumetric height \citep{Cloude2010, Hajnsek2009, Kugler2015}, in this case, SSD. Thus, the uncertainty assessment by means of the identification of the backscattering mechanisms constitutes a key role in this work.
+
+Apart from this, the forest cover map (obtained from WRD, IIRS) along with the layover and shadow regions computed using SAR simulation are used to mask out the pixels which degrade the quality of the results. This is a standard approach used in the studies focusing on snow property estimation in forested or alpine terrains \citep{Leinss2014, Leinss2016, Singh2017, Thakur2012, Usami2016}.
+
 \subsubsection{Sensitivity Analysis}
 \label{sssec:sa}
 
+The variation of the SD and SWE values corresponding to the changes in the free parameters in the FSD and SSD inversion models (window size, coherence threshold, scaling factors) are observed by iteratively running the algorithms and computing the statistical mean and standard deviation using the neighbourhood window discussed earlier in section \ref{sssec:val}. This helps in deciding the window shape and sizes and also choosing the optimum values for the several free parameters. Moreover, the accuracy of the root finding algorithm discussed in section \ref{ssec:ssd} is also checked for some possible coherence values.
+
+Additionally, the slope and aspect maps prepared from the ALOS PALSAR DEM along with the elevation values are used to observe the sensitivity of the obtained SD and SWE results toward these parameters. In this regard, it should be noted that snow accumulation is highly susceptible to the elevation, slope, aspect, wind speed, air temperature and various other hydrometeorological factors \citep{Anderton2004, Grunewald2014, Thakur2012, Zheng2016}. However, for simplicity, only these three variables are considered in this context.
+
+In addition, the ground elevation measurements acquired during the field visit to Dhundi and Kothi have been compared with the ALOS PALSAR DEM elevations ($z$). The effect of the DEM errors on the LIA, $\theta_l$, is then checked for performing the sensitivity analysis (SA) using Eq. \eqref{eq:sa} which incorporates the slope angles in $x$ ($\omega_x$) and $y$ ($\omega_y$) directions (pixel co-ordinate system where $z$ is the corresponding elevation value) derived from the DEM elevation values along with the radar incidence angle ($\theta$) \citep{Lee2000, Lee2009}. Here, the terms $\mathrm{d}z/\mathrm{d}x$ and $\mathrm{d}z/\mathrm{d}y$ refer to the rate of elevation ($z$) change in the $x$ and $y$ directions respectively. The workflow which has been adopted for the uncertainty assessment and SA is shown in Figure \ref{fig:ua}.
+
+\begin{equation}
+    \centering
+    \label{eq:sa}
+    \theta_l = \cos^{-1}\frac{\cos\omega_x\cos\left(\omega_y - \theta\right)}{\sqrt{\cos^2\omega_y\sin^2\omega_x + \cos^2\omega_x}}
+\end{equation}
+where, 
+\begin{equation*}
+    \centering
+    \omega_x = \tan^{-1}\frac{\mathrm{d}z}{\mathrm{d}x}, \omega_y = \tan^{-1}\frac{\mathrm{d}z}{\mathrm{d}y}
+\end{equation*}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Methods/Uncertainty.png}
+    \caption{Workflow adopted for carrying out uncertainty assessment and sensitivity analysis.}
+    \label{fig:ua}
+\end{figure}
+
 \section{Results and Discussion}
 \label{sec:res}
-\section{Conclusion}
-\label{sec:conc}
+\subsection{Scattering Mechanisms}
+\label{ssec:scat}
 
+The winter (January 8, 2016) and summer-time (June 8, 2017) dual-pol $H/{\alpha}$ decomposition (Figure \ref{fig:ha_res}) and unsupervised Wishart classification (Figure \ref{fig:wishart_res}) results combined with the derived class percentage statistics (Figure \ref{fig:percent}) show that, in the presence of snow, the high entropy anisotropic volume scattering (Z8) increases by 5.11\% whereas the medium entropy volume scattering (Z5) decreases by 7.01\% for the entire study area. This reduction in the Z5 volume scattering could be attributed to the partially snow covered forests and shrubs which exhibit higher volume scattering at X-band during the snow-free season (Figure \ref{subfig:mountain}). The corresponding dual-pol Wishart classified maps are displayed along with the zoomed views in Figure \ref{subfig:wishart_jan} and Figure \ref{subfig:wishart_jun} respectively.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/wishart_jan.png}}
+        \caption{}
+        \label{subfig:wishart_jan}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
+    \begin{subfigure}[t]{\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/wishart_jun.png}}
+        \caption{}
+        \label{subfig:wishart_jun}
+    \end{subfigure}
+    \caption{Zoomed views over Dhundi of the Wishart classified maps for the \subref{subfig:wishart_jan} January 8, 2016, and \subref{subfig:wishart_jun} June 8, 2017 data. Here, only the layover and shadow mask has been applied. Also, the Kothi area is excluded from the analysis since it lies in the layover region.}
+    \label{fig:wishart_res}
+\end{figure}
+
+Moreover, the Bragg surface scattering (Z3) is slightly higher in summer (10.88\%) as compared to the winter (10.38\%). One plausible reason for this is the 20 mm rainfall which occurred on June 7, 2017, evening (data retrieved from the Dhundi record book). Also, the occurrence of fresh snowfall in areas which did not have prior standing or old snow could result in surface scattering from the ground \citep{Leinss2014}. Apart from this, the asbestos gable roofs used in the human settlements (Figure \ref{subfig:base} and Figure \ref{subfig:landscape}) are strong single-bounce surface scatterers \citep{Brunner2009}. However, with snow accumulation on these materials, the surface scattering could be reduced. Another prominent feature noticeable in Figure \ref{subfig:wishart_jun} is the high amount of surface scattering from the river bed (Figure \ref{subfig:beas}) during the summer season. This is caused by both the boulders and the increasing flow of snow-melt water in the river (Figure \ref{subfig:beas}).
+
+Furthermore, the human settlements result in double-bounce scattering (Z4) \citep{Brunner2009}, which in the winter-time scenario reduces by 0.34\%. Also, the random surface scattering (Z6) increases by 0.66\% which could be caused by the presence of small snow patches on the ground. Other than this, there is a strong decrease in the low entropy multiple (dihedral) scattering from 8.23\% to 5.17\% in the snow-covered season which could be caused by the added snow layer on the buildings and also boulders.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Results/Percent.png}
+    \caption{Scattering class percentages (rounded to 2 decimal places) from the unsupervised Wishart classification.
+The different zone labels are described in Figure \ref{fig:ha}.}
+    \label{fig:percent}
+\end{figure}
+
+Another interesting aspect in this context is the increase (from 9.93\% to 19.8\%) in the number of unclassified or non-feasible pixels (Z9) for the winter-time image (Figure \ref{fig:percent}) which is also depicted through the $H/{\alpha}$ plane plots in Figure \ref{subfig:ha_jan} and Figure \ref{subfig:ha_jun}. This is primarily resulting from the added terrain complexity owing to the snow accumulation. In order to resolve this issue, the quad-pol entropy ($H$), anisotropy ($A \in$ [0, 1]), alpha ($\alpha$), $H/A/{\alpha}$ decomposition has been applied on the January 8, 2016 data. The corresponding $H/{\alpha}$ plane plot in Figure \ref{subfig:ha_jan_quad} shows that the quad-pol approach is able to fully classify the winter-time image. However, since the summer-time image is having only HH and VV channels, the dual-pol method has been used to properly compare the respective scattering mechanisms \citep{Majumdar2019}.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/ha_jan.png}}
+        \caption{}
+        \label{subfig:ha_jan}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/ha_jun.png}}
+        \caption{}
+        \label{subfig:ha_jun}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/ha_jan_quad.png}}
+        \caption{}
+        \label{subfig:ha_jan_quad}
+    \end{subfigure}
+    \caption{Dual-pol $H/{\alpha}$ plane plots for the \subref{subfig:ha_jan} January 8, 2016, and \subref{subfig:ha_jun} June 8, 2017 data, \subref{subfig:ha_jan_quad} Quad-pol $H/{\alpha}$ plane plot for the January 8, 2016 data. The colours red, green, and blue indicate the point density with red being the highest, and blue as the lowest. These plots have been made using SNAP \citep{ESA2018}.}
+    \label{fig:ha_res}
+\end{figure}
+
+Thus, from this discussion, it is clearly observed that the presence of snow causes a substantial change of the scattering patterns in the study area resulting in significant uncertainty sources. In turn, the optimisation of the model parameters along with the sensitivity analysis of the FSD and SSD values depend on these scattering types. As an example, if there is low surface scattering then the FSD inversion model leads to underestimated values \citep{Leinss2014} whereas for low volume scattering, the SSD results are generally underestimated \citep{Cloude2005, Hajnsek2009, Kugler2015}. Therefore, the uncertainty assessment by means of the scattering mechanism classification is one of the key aspects of this research.
+
+\subsection{Sensitivity Analysis Results}
+\label{ssec:sar}
+The SA has been extensively performed for the various free parameters in the FSD and SSD inversion models. Moreover, the effects of the terrain aspect, elevation and slope have been considered to analyse the variations of the FSD, SSD, and also the different scattering mechanisms with respect to these topographical variables. However, since the SWEs are computed by multiplying a constant snow density ($\rho_s =$ 0.315 g/cm\textsuperscript{3} and $\rho_f =$ 0.07 g/cm\textsuperscript{3}), the terrain-specific SA is only carried out for the FSD and SSD values. Also, the Kothi area is falling in the layover zone, and hence, it is not used as a validation point.
+
+\subsubsection{FSD Model Parameters}
+The FSD inversion model discussed in section \ref{ssec:fsd} apply the ensemble averaging operation twice--- once on the computed CPD and then subsequently on the output FSD values. As a result, the selection of an optimal window size in both these cases is critical in obtaining reliable estimates. At first, the mean ($\mu_{\gamma_c}$) and standard deviation ($\sigma_{\gamma_c}$) of the copolar coherence amplitude ($\gamma_c$) are checked over the Dhundi area based on a 3$\times$3 neighbourhood window (same as the validation window in section \ref{sssec:val}). The ensemble window for which the maximum $\mu_{\gamma_c}$ occurs is subsequently used for estimating the FSD following the methodology described in section \ref{ssec:fsd}. This selection procedure concerning the maximisation of $\mu_{\gamma_c}$ is depicted in Figure \ref{fig:fsd_coh} wherein the ensemble window of size 3$\times$3 is found to be suitable even though $\sigma_{\gamma_c} \approx$ 0.06 of this window is slightly higher than that ($\sigma_{\gamma_c} \approx$ 0.02) of the 5$\times$5 window.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Results/Coh_FSD.png}
+    \caption{Effect of the window size on the mean and standard deviation of the copolar coherence amplitude. All the
+values are rounded to 2 decimal places. Here, only odd window sizes are considered because these have been previously used in prior studies \citep{Leinss2018, Leinss2014, Kumar2011}.}
+    \label{fig:fsd_coh}
+\end{figure}
+
+\subsubsection{SSD Model Parameters}
+\subsubsection{DEM and LIA Error Analysis}
+\label{sssec:error}
+\subsubsection{Effects of Terrain Attributes}
+\label{sssec:terrain}
+\subsection{Comparative Analysis of the Snow Properties}
+\label{ssec:snow}
+
+\section{Conclusions and Recommendations}
+\label{sec:conc}
+\subsection{Conclusions}
+
+The primary focus of this research lies in estimating the snow depth using which the snow water equivalent has been measured. Here, two different types of snow have been considered— freshly fallen (new) snow and standing (old) snow. In order to compute the FSD, the CPD method has been applied (section \ref{ssec:fsd}) on the January 8, 2016, TSX-TDX CoSSC bistatic dataset acquired over the Beas watershed, northwestern Himalayas (section \ref{sec:study}). Additionally, the hybrid DEM differencing and coherence amplitude inversion algorithm based on the single-baseline Pol-InSAR technique has been utilised to estimate the SSD for the same dataset (section \ref{ssec:ssd}). Also, the corresponding FSWE and SSWE are
+obtained by multiplying constant fresh and standing snow densities.
+
+Due to the complex hydrometeorological and topographical conditions of the study area (section \ref{sssec:geo}), significant uncertainty sources are present. These include the forests, boulders, highly rough surfaces, and human settlements (Figure \ref{fig:field}) which substantially reduce the surface and volume scattering coherences required to estimate the snow depths with adequate accuracy (\ref{ssec:vus}). Moreover, the limited ground-truth data availability has always been a major challenge from the onset of this work (section \ref{ssec:data}). Apart from this, the SAR data are affected by layover, shadowing and foreshortening in mountainous terrains and hence, these errors are inherently propagated through the subsequent processing steps. In short, these are the main concerns involved in this work.
+
+Therefore, the uncertainty assessment and sensitivity analysis have been extensively conducted to address these research problems appropriately. By performing the dual-pol $H/{\alpha}$ decomposition and unsupervised Wishart classification, the different scattering mechanisms have been identified and linked with their potential sources on the ground (section \ref{ssec:scat}). Additionally, the summer (June 8, 2017) and wintertime (January 8, 2016) comparisons of the Wishart classified images explicitly showcase the significant changes in the scattering properties in the presence of snow during the winters. It is observed that, the surface scattering (Z3) has greatly reduced near the river bed (Figure \ref{subfig:beas}) which essentially suggests that the PolSAR CPD method will potentially result in underestimated values. However, due to this reduced Z3 scattering, the topographic or ground phase required in the SSD inversion model would also be underestimated and could result in the overestimation of the SSD measurements. Hence, the quantitative comparative analysis of the scattering mechanism changes (Figure XXX) enables to suitably interpret the variations in the final FSD and SSD maps (section \ref{ssec:snow}).
+
+Regarding the SA, the changes in the layover (including shadow), forest, scattering classes, fresh snow, and standing snow areas corresponding to the aspect, elevation, and slope are considered. Also, the variations in the mean snow depths are calculated with respect to these terrain attributes (section \ref{sssec:terrain}). In addition, the different FSD and SSD user-defined model parameters are thoroughly tested for optimality. These optimisation steps are driven by means of appropriate accuracy assessments via a 3$\times$3 validation window over Dhundi. Notably, the estimates exhibit a strong dependence on the ensemble window based averaging which is a mandatory processing step common to both these models. Moreover, the reference ALOS PALSAR DEM errors are computed using the acquired DGPS measurements during the field visit to Dhundi and Kothi. However, it is observed that the elevation errors do not significantly alter the LIA values which are in turn, required for the FSD and SSD inversion models (section \ref{sssec:error}).
+
+Thus, the novelty of this research lies in suitably modifying and ultimately improving the hybrid Pol-InSAR model (section \ref{ssec:ssd}) to estimate the SSD which is new in the context of cryospheric studies. Additionally, the PolSAR CPD method for FSD retrieval has been tested for the first time in the presence of extreme topographically varying conditions. Although the FSD and SSD ground-truth measurements from only the Dhundi station had been available, the high accuracies of 94.83\% and 99.53\% respectively imply that these improved models work sufficiently well under the complex hydrometeorological situations.
+
+\subsection{Recommendations}
+
+One of the main limitations of this work is the high subjectivity of the free parameters involved in the FSD and SSD inversion models. For example, the vertical wavenumber scaling parameter, $\eta^\prime$, which is set to 5 for the SSD estimation (section \ref{ssec:ssd}), can significantly alter the results because the associated ambiguity height, $h_{2\pi}^\prime$, is almost equal to the maximum height of the volume scatterer (snow). Also, the prior knowledge of this maximum snow depth, $\Delta{Z_{s, max}}$, is seemingly impossible to obtain without any appropriate field survey. So, it is recommended to use the multi-baseline Pol-InSAR technique \citep{Cloude2010} wherein $k_z$ can be simulated (instead of scaling by $\eta^\prime$) after an appropriate accuracy assessment \citep{Kumar2017}. However, this approach will only be feasible if there are adequately sampled (both spatially and temporally) SD field measurements.
+
+Similarly, the effect of different window shapes (square or rectangular) and sizes can be considered for the ensemble averaging operation. This sort of sensitivity analysis will help in deciding optimal window structures separately for each model. Moreover, it is recommended to apply scattering mechanism based masks in conjunction with snow masks prepared from the high resolution optical datasets such as those provided by Sentinel-2 \citep{Zhu2015}. Additionally, the prior classification of the dry and wet snow including the preparation of snow cover maps \citep{Leinss2018, Thakur2012, Zhu2015} as necessary preprocessing steps will certainly improve the uncertainty assessment process.
+
+Apart from this, it is noteworthy that, although the aspect plays a critical role in controlling the snow accumulation variations, it cannot be solely used to justify the spatial behaviour of snow in the complex alpine terrains. As a result, the elevation and slope need to be used in conjunction with the aspect to address the snow variability. However, in this thesis, these three terrain attributes are individually used to assess the effects on the FSD and SSD estimates. Hence, the combined analysis of these is recommended in future studies in this regard.
+
+Additionally, the use of the newer multi-temporal high resolution L-band datasets acquired by the upcoming SAR missions \citep{Krieger2016, Rosen2017} is recommended to further verify and validate these models. Moreover, radar altimeters such as the Ka-band InSAR altimeter could potentially improve the SD and SWE estimates, and could also be used for operational snow depth monitoring on a large-scale \citep{Hensley2016, Kim2018, Moller2011, Speziali2018}.
+
+In this work, due to the time constraints, only one dataset (January 8, 2016) has been used for analysis. Instead, if a full scale time series analysis is performed, then the robustness of the SSD and FSD retrieval models can be checked. Furthermore, the polarisation weight vectors (Table \ref{table:1}) can be optimised specifically to the data which will eventually improve the accuracy of the estimates \citep{Cloude2005, Cloude2010}. Also, since the assumption of a constant snow density over such undulating terrains is impractical (section \ref{sec:method}), the snow densities need to be computed gridwise (or if possible, pixelwise) by using hydrological modelling approaches \citep{Bartelt2002, Liang1994}. The snow densities can also be estimated from the PolSAR based techniques which are in practice \citep{Singh2017, Thakur2012}. Finally, appropriate statistical significance testing needs to be carried out to quantify further the uncertainties associated with the FSD and SSD estimates.
+
+\section*{Acknowledgements}
+This research work was carried out as part of the ISRO EOAM mountain ecosystem, TANDEM-X AO and ALOS-RA4 project (EOAM-ME (WRD)) on the Himalayan glaciers. Also, this work was conducted within the Indian Institute of Remote Sensing (IIRS), ISRO and University of Twente, Faculty ITC joint education programme (JEP) framework. Therefore, the authors are grateful to IIRS, ISRO and University of Twente, Faculty ITC along with the FOSS4G community for providing the necessary means to conduct this study.  
 \section*{References}
 
 \bibliography{refs}
