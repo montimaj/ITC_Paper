@@ -1,6 +1,6 @@
 \documentclass[review]{elsarticle}
 
-\usepackage{lineno,hyperref, graphicx, amsmath, esvect, amssymb, ragged2e}
+\usepackage{lineno,hyperref, graphicx, amsmath, esvect, amssymb, ragged2e, titlesec}
 \usepackage[labelformat=simple]{subcaption}
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -10,6 +10,13 @@
 \modulolinenumbers[5]
       
 \journal{Int J Appl Earth Obs Geoinformation}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\it}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Elsevier bibliography styles
@@ -558,7 +565,81 @@ values are rounded to 2 decimal places. Here, only odd window sizes are consider
     \label{fig:fsd_coh}
 \end{figure}
 
+Next, the sensitivity of the FSD values with respect to the ensemble window size is taken into account. This is shown in Figure \ref{fig:fsd_res} where the analysis starts from the window size 3$\times$3 and continues till 99$\times$99 with an increment of two pixels in each direction (Figures \ref{subfig:fwindow_mean} and \ref{subfig:fwindow_var}). In this context, smaller window sizes ($<$ 45$\times$45) are not considered following the work of \cite{Leinss2014} where a 45$\times$35 window size has been chosen. Similarly, higher window sizes ($>$ 65$\times$65) are not used because of the varying topography in the study area. Another reason is that, since the Dhundi region exhibits moderate undulating terrains, so from the validation perspective, window sizes which cover ground areas of more than 0.4 km\textsuperscript{2} are excluded from the analysis. Hence, the transect as shown in Figure \ref{subfig:fwindow_transect} is used for deciding the FSD ensemble window size.
+
+In this regard, the SPA measured FSD ground-truth data at 06:22 hrs January 8, 2016 (IST) was 18.7 cm, and that of the manual record book was 18 cm (section \ref{ssec:data}). Assuming the SPA sensor bias to be 5 cm for the SD, the FSD ground observation of 18 cm is taken as the true value. Accordingly, it is observed from Figure \ref{subfig:fwindow_transect} that the 65$\times$65 window leads to the most accurate (94.83\%) mean FSD ($\mu_f \approx$ 18.93 cm) with a low FSD standard deviation ($\sigma_f \approx$ 0.1 cm). The corresponding mean FSWE ($\mu_{fs} \approx$ 13.25 mm) and FSWE standard deviation ($\sigma_{fs} \approx$ 0.07 mm) are also in concordance (94.84\% accuracy) with the ground-truth FSWE of 12.6 mm. However, it should be noted that the axial ratio for the fresh snow particle, $a_x/a_z$ = 1.5 is kept as an invariant throughout the entire FSD workflow (Figure \ref{fig:fsd_method}) and its SA has not been carried out.
+
+Here, the FSD and $\gamma_c$ values are significantly influenced by the mixed scattering mechanisms exhibited by
+the ground features (Figure \ref{subfig:wishart_jan}) which are being considered for the averaging operation. Moreover, the
+underlying assumption of a smooth surface in the FSD inversion model does not hold for such rough terrains and consequently, $\gamma_c$ is reduced \citep{Leinss2014}. Therefore, the FSD SA concludes that even though a sufficiently reliable FSD estimate has been achieved in the Dhundi area, the window sizes need to be adequately adjusted for different multi-temporal SAR images acquired over the same region thereby leading to a more robust parameter optimisation process.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/fsd_mean_window.png}}
+        \caption{}
+        \label{subfig:fwindow_mean}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/fsd_var_window.png}}
+        \caption{}
+        \label{subfig:fwindow_var}
+    \end{subfigure}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
+    \begin{subfigure}[t]{0.49\textwidth}
+        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/FSD_Res.png}}
+        \caption{}
+        \label{subfig:fwindow_transect}
+    \end{subfigure}
+    \caption{Effect of the window size on the \subref{subfig:fwindow_mean} mean and \subref{subfig:fwindow_var} standard deviation of the FSD estimates. Here, the transect between the two red points (45$\times$45 and 65$\times$65) are collectively shown in \subref{subfig:fwindow_transect} wherein all the values are rounded to 2 decimal places.}
+    \label{fig:fsd_res}
+\end{figure}
+
 \subsubsection{SSD Model Parameters}
+The SSD inversion model as described from the implementation or methodological perspective in section \ref{ssec:ssd} incorporates several user-defined free parameters. Thus, it is necessary to conduct an appropriate SA for the hybrid Pol-InSAR based volumetric height (SSD) retrieval algorithm. Accordingly, the various model parameters and their optimisation are discussed below.
+
+\paragraph*{Volume and Surface Coherence Ensemble Window}
+
+The ensemble windows corresponding to the number of looks (L) in Eq. (12) must be suitably chosen so as to maximise both the volume coherence amplitude, $\gamma\left(\vv{w_v}\right)$, and the surface coherence amplitude, $\gamma\left(\vv{w_s}\right)$. As a result, the SA for these window sizes is an important aspect of this work.
+
+The effects of $L$ on the mean volume coherence amplitude, $\mu_{\gamma\left(\vv{w_v}\right)}$ and the mean surface coherence
+amplitude, $\mu_{\gamma\left(\vv{w_s}\right)}$ which are measured by applying the same 3$\times$3 neighbourhood window over Dhundi (section \ref{ssec:ssd}) along with the respective standard deviations, $\sigma_{\gamma\left(\vv{w_v}\right)}$ and $\sigma_{\gamma\left(\vv{w_v}\right)}$, are displayed in Figure \ref{fig:ssd_coh}. 
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Results/Coh_SSD.png}
+    \caption{Effect of the number of looks ($L$) on the volume and surface coherence. All the values are rounded to 2
+decimal places.}
+    \label{fig:ssd_coh}
+\end{figure}
+
+It can be seen that for the executed test cases, with increasing $L$, there is a general decreasing trend for both these coherences. So, for the SSD estimation, $L =$ 3 is chosen even though \cite{Cloude2005} suggests the usage of higher values of $L$. This is because, $\sigma_{\gamma\left(\vv{w_v}\right)} \approx$ 0.1 and $\sigma_{\gamma\left(\vv{w_s}\right)} \approx$ 0.18 are sufficiently small with adequately high $\mu_{\gamma\left(\vv{w_v}\right)} \approx$ 0.67 and $\mu_{\gamma\left(\vv{w_s}\right)} \approx$ 0.68. Also, since there is only one validation point for the entire study area, $L =$ 3 is justifiable.
+
+However, there exist several free parameters in this Pol-InSAR based SSD inversion model (section \ref{ssec:ssd}) and hence, the volume and surface coherence ensemble windows need to be kept constant ($L =$ 3) for the subsequent SA of the other parameters.
+
+\paragraph*{Scaling Parameters}
+
+It has been previously discussed in section \ref{ssec:ssd} that there are two scaling parameters involved in the SSD estimation process. These are the vertical wavenumber scaling parameter ($\eta^\prime\in\mathbb{R}_{>0}^+$) and the scaling factor ($\eta\in$ [0, 1]) of the hybrid DEM differencing approach developed by \cite{Cloude2010}. Here, the SA of only $\eta$ is carried out and $\eta^\prime = $ 5 is kept constant throughout the entire workflow. Also, the volume coherence threshold, $\tau_v = $ 0.6, $L =$ 3, ground phase median ensemble filter window (21$\times$21), vertical wavenumber ensemble average window (21$\times$21), and the SSD ensemble average window of size 57$\times$57 are unchanged during this SA.
+
+The monotonically increasing SSD with respect to increasing $\eta$ are displayed in Figure \ref{fig:eta}. For $\eta =$ 0, the standard DEM differencing technique \citep{Cloude2005} results in the mean SSD, $\mu_s \approx$ 42.46 cm with the corresponding SSD standard deviation, $\sigma_s \approx$ 0.49 cm. As the SPA measured SSD at 06:22 hrs IST, January 8, 2016, is 54.9 cm, so $\mu_s$ is underestimated. Naturally, the mean SSWE, $\mu_{ss} \approx$ 133.76 mm (with SSWE standard deviation, $\sigma_{ss} \approx$ 1.53 mm) is also lower compared to the SPA measured SSWE of 173 mm. Thus, to effectively optimise the volumetric height, $\eta$ needs to be suitably increased \citep{Cloude2005, Cloude2010}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Results/Eta.png}
+    \caption{Increasing mean SSD with respect to the scaling parameter $\eta$.}
+    \label{fig:eta}
+\end{figure}
+
+In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree
+height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 49.64 cm ($\sigma_s \approx$ 0.54 cm) is obtained with $\sim$90.42\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.65, the best SSD and SSWE accuracies of 99.53\% ($\mu_s \approx$ 54.64 cm) and 99.48\% ($\mu_{ss} \approx$ 172.10 mm) respectively are achieved over Dhundi with low standard deviations ($\sigma_s \approx$ 0.58 cm, $\sigma_{ss} \approx$ 1.82 mm) accounting for high reliability. These results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
+
+\paragraph*{Computing $\sinc$ Inverse}
+In order to test the accuracy of the $\sinc_\pi$ inverse function, sample test data representing the actual inverse, $\alpha_r$, have been prepared as shown in Table 3. Next, the $\sinc_\pi$ of these data, $\sinc_{\pi}\left(\alpha_r\right)$, is computed which essentially corresponds to the possible $\gamma\left(\vv{w_v}\right)$ values. So, the idea of performing SA in this scenario is to check the accuracy of the calculated $\sinc_{\pi_C}^{-1}$ (Eq. \eqref{seq:ncloude}) and $\sinc_{\pi_S}^{-1}$ (Eq. \eqref{seq:secant}) of the $\sinc_{\pi}\left(\alpha_r\right)$ values by comparing these with $\alpha_r$.
+
+
+\paragraph*{SSD Ensemble Window}
+
 \subsubsection{DEM and LIA Error Analysis}
 \label{sssec:error}
 \subsubsection{Effects of Terrain Attributes}
