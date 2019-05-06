@@ -56,6 +56,26 @@
 \hbadness=10000
 \sloppy
 
+\usepackage{scalerel}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+  orcidlogo/.pic={
+    \fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+    \fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+                 svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+                 svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+  }
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+\begin{tikzpicture}[yscale=-1,transform shape]
+\pic{orcidlogo};
+\end{tikzpicture}
+}{|}}}}
+
 \DeclareMathOperator{\sinc}{sinc}
 \begin{document}
 
@@ -73,7 +93,6 @@
 \author[itc,iirs]{Sayantan Majumdar \corref{corrauth}}
 \cortext[corrauth]{Corresponding author}
 \ead{monti.majumdar@gmail.com}
-
 \author[iirs]{Praveen K. Thakur}
 %\ead{praveen@iirs.gov.in}
 \author[itc]{Ling Chang}
@@ -102,8 +121,6 @@ Synthetic Aperture Radar, Copolar Phase Difference, Pol-InSAR, Snow Physical Pro
 Snow depth (SD) and snow water equivalent (SWE) are two of the most important physical properties of snow and are extensively used in hydrological models that relate to snowmelt runoff and snow avalanche predictions \citep{Thakur2017}. While snow depth or snow height refers to the distance of the ground to the snow surface, SWE quantifies the amount of water present in a snowpack (layered snow formed by accumulation over time). Theoretically, SWE is defined as the product of snow depth and snow density and can be conceptualised as the amount of liquid water obtained owing to the instantaneous melting of
 an entire snowpack \citep{Tedesco2015}. The accurate estimation of these two parameters is quite challenging depending upon the data availability and variety, mathematical model selection, and the hydrometeorological conditions of the area of interest. Hence, it is considered to be an important research element in the cryosphere paradigm \citep{Leinss2014, Leinss2015, Leinss2016}.
 
-Additionally, the snow accumulation process is heavily dependent on the terrain characteristics which include the elevation, slope, and the slope direction or aspect \citep{Grunewald2014, Jain2009, Negi2009, Srinivasulu2004, Zheng2016}. In this context, previous studies focusing on mountainous regions \citep{Grunewald2014, Jain2009} have found that the elevation and snow depth are positively correlated till a certain elevation threshold. After this, there is a significant decrease in the SD with increasing elevation values. Moreover, snow accumulation is not prominent in steep slopes due to the snow redistribution caused by avalanches and wind drift \citep{Grunewald2014}. Freshly fallen snow on top of standing or old snow in the windward slope (mountain side which receives heavy precipitation) are eroded and at the same time deposited to some other slopes which alters the snow cover area \citep{Lehning2008}. Furthermore, the process of preferential deposition occurring in steep terrains leads to the snow deposition in the leeward side (mountain side which generally receives low precipitation) of a mountain where low snow accumulation is expected \citep{Lehning2008}.
-
 Due to the difficulties posed by in-situ or ground based measurements of snow depth and SWE in rugged terrains, remote sensing techniques coupled with adequately sampled (both in space and time domains) ground measurements are widely used to improve the quality of these estimated parameters over considerably large areas \citep{Takala2011}. Currently, LiDAR (Light Detection and Ranging) and spaceborne SAR are the most popular techniques used in the studies related to snow, ice and the cryosphere in general \citep{Deems2013, Leinss2014, Tedesco2015}. However, LiDAR can only be used to determine the height of the snow and cannot be used for measuring other physical properties such as snow density and snow wetness. In addition, the operating cost of LiDAR is sufficiently high and is also weather dependent \citep{Deems2013}. As a result, spaceborne SAR systems benefit from substantial coverage (globally available), cloud insensitivity, night-time operability and are extensively used to measure the snow physical properties sufficiently at high spatial resolutions \citep{Moreira2013, Thakur2012}.
 
 The applicability of SAR systems for snow cover monitoring was discussed as early as 1977 \citep{Ulaby1977} wherein the snow backscatter coefficient was measured and was thereafter modelled for various frequencies, layers, and polarisations \citep{Zuniga1979}. It was shown that only very high microwave frequencies (Ku-band or higher) exhibit a significant dependence on SD or the SWE of dry or standing (deposited) snow \citep{Yueh2009}. However, lower frequencies (X-
@@ -120,7 +137,7 @@ A polarimetric SAR system utilises the polarised radar echoes to obtain informat
 
 Interferometric SAR techniques find significant usage in the cryosphere domain and have been used to construct highly accurate digital elevation models (DEMs), measure dry snow depth and SWE in several studies \citep{Guneriussen2001, Lei2016, Leinss2015, Li2017, Liu2017}. The principle of SAR interferometry builds upon measured phase differences between radar images of the same area acquired at different temporal instances (repeat-pass) or different viewing geometries but same epoch (single-pass) \citep{Hanssen2001}. Still, the inherent problems of spatial and temporal decorrelations and atmospheric inhomogeneities are the primary limiting factors in the studies involving InSAR and its variant D-InSAR (Differential InSAR) \citep{Pepe2017}. These factors are responsible for inaccurate and low-coherence measurements, thereby leading to a potential decrease in the accuracy of the final results. In cryosphere research, the loss of coherence in InSAR is heavily influenced by the snow humidity, melting, and refreezing and is also susceptible to the variations in both spatial and temporal baselines. Although data assimilation algorithms like 3DVAR (three dimensional variation) and EnKF (Ensemble Kalman Filter) have been applied to the produced outputs of the SD inversion models for minimizing the effect of temporal decorrelation, the applicability and feasibility of such algorithms remains untested on varying data sets and study areas \citep{Liu2017}.
 
-The Pol-InSAR technique works on the coherent combination of both PolSAR and InSAR observations, thereby enabling the interferogram generation in arbitrary transmit and receive channels \citep{Cloude1998, Cloude2005, Cloude2010}. It has been widely used for estimating tree height in forested regions and can be effectively applied to natural or artificial volume scatterers including snow and ice \citep{Hajnsek2009, Kugler2015, Kumar2017, Papathanassiou2001}. In essence, the identification of different scattering processes (PolSAR) and the vertical profile sensitivity (InSAR) are unique to this technique. Therefore, the applicability of Pol-InSAR based SD retrieval could prove its potential in case of the standing snow depth (SSD) \citep{Negi2009, Thakur2012, Thakur2017}.
+The Pol-InSAR technique works on the coherent combination of both PolSAR and InSAR observations, thereby enabling the interferogram generation in arbitrary transmit and receive channels \citep{Cloude1998, Cloude2005, Cloude2010}. It has been widely used for estimating tree height in forested regions and can be effectively applied to natural or artificial volume scatterers including snow and ice \citep{Hajnsek2009, Kugler2015, Kumar2017, Papathanassiou2001}. In essence, the identification of different scattering processes (PolSAR) and the vertical profile sensitivity (InSAR) are unique to this technique. Therefore, the applicability of Pol-InSAR based SD retrieval could prove its potential in case of the standing snow depth (SSD) \citep{Thakur2012, Thakur2017}.
 
 The prime focus of this research is to estimate the FSD and SSD using PolSAR and Pol-InSAR respectively. In addition, the corresponding fresh SWE (FSWE) and standing SWE (SSWE) are to be determined, for which the respective snow densities need to be known. Essentially, the study involves sensitivity analysis of the various model parameters along with the identification of the different uncertainty sources present in the chosen geographical area. 
 
@@ -197,7 +214,7 @@ Resources Department (WRD), Indian Institute of Remote Sensing (IIRS).
 
 \subsection{Software}
 
-The Sentinel Application Platform (SNAP) 6.0.5 \citep{ESA2018} has been used for basic SAR processing. In addition, the FSD and SSD inversion models have been implemented using Python 3 wherein PyCharm Community Edition 2018.1 \citep{JetBrains2018} was used as the Integrated Development Environment (IDE). Moreover, the final SD and SWE maps have been prepared using QGIS 2.18 \citep{QGIS2016}. Furthermore, some of the computationally intensive tasks have been carried out using the High-Performance Computing (HPC) infrastructure installed at IIRS.
+The Sentinel Application Platform (SNAP) 6.0.5 \citep{ESA2018} has been used for basic SAR processing. In addition, the FSD and SSD inversion models have been implemented using Python 3 wherein PyCharm Community Edition 2018.1 \citep{JetBrains2018} was used as the coding environment. Moreover, the final snow depth maps have been prepared using QGIS 2.18 \citep{QGIS2016}. Furthermore, some of the computationally intensive tasks have been carried out using the High-Performance Computing (HPC) infrastructure installed at IIRS.
 
 \section{Methodology}
 \label{sec:method}
@@ -261,13 +278,8 @@ solving the surface integral ($s$ is the ellipsoidal surface) as shown in Eq. \e
 \end{equation}
 where, $N_x + N_y + N_z = 1$
 
-For a perfectly spherical shape, all three depolarisation factors are equal to 1/3. The two other special
-cases include disk (1, 0, 0) and needle (0, 1/2, 1/2). In cases of prolate and oblate spheroids, the closed
-form expressions are already available as shown in Eq. \eqref{eq:4} \citep{Sihvola1999}. Here, the shape is dependent
-on the axial ratio ($a_x/a_z$) which is used for calculating the prolate eccentricity, $e_1 = \sqrt{1 - (a_x/a_z)^2}$ , and
-oblate eccentricity, $e_2 = \sqrt{(a_x/a_z)^2 - 1}$ respectively, i.e., for prolate, $a_x/a_z < 1$, whereas for oblate, it
-is the reverse. However, for general ellipsoids having different axes, the above surface integration needs to
-be explicitly solved.
+For a perfectly spherical shape, all three depolarisation factors are equal to 1/3. The two other special cases include disk (1, 0, 0) and needle (0, 1/2, 1/2). In cases of prolate and oblate spheroids, the closed form expressions are already available as shown in Eq. \eqref{eq:4} \citep{Sihvola1999}. Here, the shape is dependent on the axial ratio ($a_x/a_z$) which is used for calculating the prolate eccentricity, $e_1 = \sqrt{1 - (a_x/a_z)^2}$ , and oblate eccentricity, $e_2 = \sqrt{(a_x/a_z)^2 - 1}$ respectively, i.e., for prolate, $a_x/a_z < 1$, whereas for oblate, it
+is the reverse. However, for general ellipsoids having different axes, the above surface integration needs to be explicitly solved.
 
 \begin{equation}
     \label{eq:4}
@@ -312,8 +324,7 @@ Once all these aforementioned parameters are calculated, the CPD based inversion
 \begin{center}where, $\Delta{\zeta} = \sqrt{n^2_V - \sin^{2}\theta_l} - \sqrt{n^2_H - \sin^{2}\theta_l}, \phi_{CPD} > 0, \text{ and } n_H > n_V$\end{center}
 
 Here, the depolarisation factors are calculated by setting the axial ratio, $a_x/a_z = 1.5$ in
-Eq. \eqref{eq:4} and choosing the snow particle shape as an oblate \citep{Majumdar2019}. After this, the anisotropic
-effective permittivities are computed using Eq. \eqref{eq:5}. Finally, the FSD is obtained from Eq. \eqref{eq:7} wherein an ensemble averaging filter of size 65$\times$65 is applied. The FSWE is obtained by multiplying the FSD with the fresh snow density (i.e, FSWE $ = \rho_f\Delta{Z_f}$)Also, the fresh snow density ($\rho_f = $ 0.07 g/cm\textsuperscript{3}) which is manually measured at Dhundi, is kept constant for the entire study area along with the copolar coherence threshold, $\tau_c = $ 0 ($\tau_c \in$ [0, 1]), i.e., no thresholding has been applied on $\gamma_c$ computed using Eq. \eqref{eq:2}, but the provision for it is built-in to the implementation. Moreover, as per the TSX/TDX metadata, the radar wavelength, $\lambda_0 \approx$ 3.11 cm. In this context, the adopted workflow is depicted in Figure \ref{fig:fsd_method}.
+Eq. \eqref{eq:4} and choosing the snow particle shape as an oblate \citep{Majumdar2019}. After this, the anisotropic effective permittivities are computed using Eq. \eqref{eq:5}. Finally, the FSD is obtained from Eq. \eqref{eq:7} wherein an ensemble averaging filter of size 65$\times$65 is applied. The FSWE is obtained by multiplying the FSD with the fresh snow density (i.e, FSWE $ = \rho_f\Delta{Z_f}$)Also, the fresh snow density ($\rho_f = $ 0.07 g/cm\textsuperscript{3}) which is manually measured at Dhundi, is kept constant for the entire study area along with the copolar coherence threshold, $\tau_c = $ 0 ($\tau_c \in$ [0, 1]), i.e., no thresholding has been applied on $\gamma_c$ computed using Eq. \eqref{eq:2}, but the provision for it is built-in to the implementation. Moreover, as per the TSX/TDX metadata, the radar wavelength, $\lambda_0 \approx$ 3.11 cm. In this context, the adopted workflow is depicted in Figure \ref{fig:fsd_method}.
 
 \begin{figure}[htb]
     \centering
@@ -381,8 +392,7 @@ In this study, the modified (also improved) hybrid DEM differencing and coherenc
 Moreover, the actual vertical wavenumber, $k_z$ , when varied with the LIA, is in the order of 0.1 rad/m with the ambiguity height, $h_{2\pi} = 2\pi/k_z \approx$ 63.18 m, $\lambda_0 \approx$ 3.11 cm and $m$ = 1 (single-pass acquisition). Since the maximum height of the distributed volume scatterer (in this case, standing snow), $\Delta{Z_{s,max}}$, should be similar to $h_{2\pi}$ \citep{Kugler2015, Hajnsek2009, Kumar2017}, $k_z$ has to be rescaled to an optimum range for effectively estimating the SSD. Hence, the modified vertical wavenumber, $k_z^\prime$ , is given by Eq. \eqref{seq:vn} where $\eta^\prime$ is a free scaling parameter which has to be set according to the known $\Delta{Z_{s,max}}$ in the study area. Here, $h_{2\pi}^\prime$ is the scaled height of ambiguity which like that of $h_{2\pi}$ determines the height changes in modulo $2\pi$ \citep{Hanssen2001}. Also, $\mathbb{R}_{>0}^+$ denotes the set of all positive real numbers in the interval $(0, \infty)$. In this work, due to the limited ground-truth data availability and the subsequent ensemble
 averaging operation (window size of 21$\times$21) on $k_z^\prime$ , $\Delta{Z_{s,max}} = $ 12 m has been assumed for which $\eta^\prime = $ 5 is used.
 
-Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and the parameter $m$ is set to 1 for bistatic
-acquisition and 2 in the monostatic case. Also in Eq. \eqref{seq:vn}, $\Delta\theta$ is the change in the incidence angle occuring due to the spatial baseline, $\theta_l$ is the LIA, and $\lambda_0$ is the radar wavelength as before in section \ref{ssec:fsd} \citep{Cloude2010, Kugler2015}.
+Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and the parameter $m$ is set to 1 for bistatic acquisition and 2 in the monostatic case. Also in Eq. \eqref{seq:vn}, $\Delta\theta$ is the change in the incidence angle occuring due to the spatial baseline, $\theta_l$ is the LIA, and $\lambda_0$ is the radar wavelength as before in section \ref{ssec:fsd} \citep{Cloude2010, Kugler2015}.
 
 \begin{subequations}
     \centering
@@ -430,7 +440,7 @@ However, in order to compute the inverse $\sinc_\pi$ (normalised $\sinc$) functi
         \label{seq:secant}
         & \sinc_\pi\alpha_r  - \gamma\left(\vv{w_v}\right) = 0 \\
         \label{seq:ncloude}
-        & \sinc_{\pi_C}^{-1}\left(\gamma\left(\vv{w_v}\right)\right) = 1 - \frac{2\sin^{-1}\left(\gamma\left(\vv{w_v}\right)^{0.8}\right)}{\pi}
+        & \sinc_{\pi_C}^{-1}\left(\gamma\left(\vv{w_v}\right)\right) = \frac{\sinc_C^{-1}\left(\gamma\left(\vv{w_v}\right)\right)}{\pi}
     \end{align}
 \end{subequations}
 
@@ -464,9 +474,7 @@ Apart from this, the forest cover map (obtained from WRD, IIRS) along with the l
 
 The variation of the SD and SWE values corresponding to the changes in the free parameters in the FSD and SSD inversion models (window size, coherence threshold, scaling factors) are observed by iteratively running the algorithms and computing the statistical mean and standard deviation using the neighbourhood window discussed earlier in section \ref{sssec:val}. This helps in deciding the window shape and sizes and also choosing the optimum values for the several free parameters. Moreover, the accuracy of the root finding algorithm discussed in section \ref{ssec:ssd} is also checked for some possible coherence values.
 
-Additionally, the slope and aspect maps prepared from the ALOS PALSAR DEM along with the elevation values are used to observe the sensitivity of the obtained SD and SWE results toward these parameters. In this regard, it should be noted that snow accumulation is highly susceptible to the elevation, slope, aspect, wind speed, air temperature and various other hydrometeorological factors \citep{Anderton2004, Grunewald2014, Thakur2012, Zheng2016}. However, for simplicity, only these three variables are considered in this context.
-
-In addition, the ground elevation measurements acquired during the field visit to Dhundi and Kothi have been compared with the ALOS PALSAR DEM elevations ($z$). The effect of the DEM errors on the LIA, $\theta_l$, is then checked for performing the sensitivity analysis (SA) using Eq. \eqref{eq:sa} which incorporates the slope angles in $x$ ($\omega_x$) and $y$ ($\omega_y$) directions (pixel co-ordinate system where $z$ is the corresponding elevation value) derived from the DEM elevation values along with the radar incidence angle ($\theta$) \citep{Lee2000, Lee2009}. Here, the terms $\mathrm{d}z/\mathrm{d}x$ and $\mathrm{d}z/\mathrm{d}y$ refer to the rate of elevation ($z$) change in the $x$ and $y$ directions respectively. The workflow which has been adopted for the uncertainty assessment and SA is shown in Figure \ref{fig:ua}.
+In addition, the ground elevation measurements acquired during the field visit to Dhundi and Kothi have been compared with the ALOS PALSAR DEM elevations ($z$). The effect of the DEM errors on the LIA, $\theta_l$, is then checked for performing the sensitivity analysis (SA) using Eq. \eqref{eq:sa} which incorporates the slope angles in $x$ ($\omega_x$) and $y$ ($\omega_y$) directions (pixel co-ordinate system where $z$ is the corresponding elevation value) derived from the DEM elevation values along with the radar incidence angle ($\theta$) \citep{Lee2000, Lee2009}. Here, the terms $\mathrm{d}z/\mathrm{d}x$ and $\mathrm{d}z/\mathrm{d}y$ refer to the rate of elevation ($z$) change in the $x$ and $y$ directions respectively.
 
 \begin{equation}
     \centering
@@ -478,13 +486,6 @@ where,
     \centering
     \omega_x = \tan^{-1}\frac{\mathrm{d}z}{\mathrm{d}x}, \omega_y = \tan^{-1}\frac{\mathrm{d}z}{\mathrm{d}y}
 \end{equation*}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Methods/Uncertainty.png}
-    \caption{Workflow adopted for carrying out uncertainty assessment and sensitivity analysis.}
-    \label{fig:ua}
-\end{figure}
 
 \section{Results and Discussion}
 \label{sec:res}
@@ -517,8 +518,7 @@ Furthermore, the human settlements result in double-bounce scattering (Z4) \cite
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/Results/Percent.png}
-    \caption{Scattering class percentages (rounded to 2 decimal places) from the unsupervised Wishart classification.
-The different zone labels are described in Figure \ref{fig:ha}.}
+    \caption{Scattering class percentages (rounded to 2 decimal places) from the unsupervised Wishart classification. The different zone labels are described in Figure \ref{fig:ha}.}
     \label{fig:percent}
 \end{figure}
 
@@ -551,7 +551,7 @@ Thus, from this discussion, it is clearly observed that the presence of snow cau
 
 \subsection{Sensitivity Analysis Results}
 \label{ssec:sar}
-The SA has been extensively performed for the various free parameters in the FSD and SSD inversion models. Moreover, the effects of the terrain aspect, elevation and slope have been considered to analyse the variations of the FSD, SSD, and also the different scattering mechanisms with respect to these topographical variables. However, since the SWEs are computed by multiplying a constant snow density ($\rho_s =$ 0.315 g/cm\textsuperscript{3} and $\rho_f =$ 0.07 g/cm\textsuperscript{3}), the terrain-specific SA is only carried out for the FSD and SSD values. Also, the Kothi area is falling in the layover zone, and hence, it is not used as a validation point.
+In order to perform the sensitivity analysis, only the Dhundi area is chosen as Kothi is lying in the layover zone for this acquisition (January 8, 2016).
 
 \subsubsection{FSD Model Parameters}
 \label{sssec:fsd_param}
@@ -633,8 +633,7 @@ The monotonically increasing SSD with respect to increasing $\eta$ are displayed
     \label{fig:eta}
 \end{figure}
 
-In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree
-height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 49.64 cm ($\sigma_s \approx$ 0.54 cm) is obtained with $\sim$90.42\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.65, the best SSD and SSWE accuracies of 99.53\% ($\mu_s \approx$ 54.64 cm) and 99.48\% ($\mu_{ss} \approx$ 172.10 mm) respectively are achieved over Dhundi with low standard deviations ($\sigma_s \approx$ 0.58 cm, $\sigma_{ss} \approx$ 1.82 mm) accounting for high reliability. These results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
+In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 49.64 cm ($\sigma_s \approx$ 0.54 cm) is obtained with $\sim$90.42\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.65, the best SSD and SSWE accuracies of 99.53\% ($\mu_s \approx$ 54.64 cm) and 99.48\% ($\mu_{ss} \approx$ 172.10 mm) respectively are achieved over Dhundi with low standard deviations ($\sigma_s \approx$ 0.58 cm, $\sigma_{ss} \approx$ 1.82 mm) accounting for high reliability. These results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
 
 \paragraph*{Computing $\sinc$ Inverse}
 In order to test the accuracy of the $\sinc_\pi$ inverse function, sample test data representing the actual inverse, $\alpha_r$, have been prepared as shown in Table \ref{table:2}. Next, the $\sinc_\pi$ of these data, $\sinc_{\pi}\left(\alpha_r\right)$, is computed which essentially corresponds to the possible $\gamma\left(\vv{w_v}\right)$ values. So, the idea of performing SA in this scenario is to check the accuracy of the calculated $\sinc_{\pi_C}^{-1}$ (Eq. \eqref{seq:ncloude}) and $\sinc_{\pi_S}^{-1}$ (Eq. \eqref{seq:secant}) of the $\sinc_{\pi}\left(\alpha_r\right)$ values by comparing these with $\alpha_r$.
@@ -727,97 +726,12 @@ The DEM errors calculated using the Dhundi and Kothi DGPS readings are displayed
 
 In addition, the LIA varies from 0$^\circ$ to 7.59$^\circ$ (Dhundi) and 0$^\circ$ to 0.17$^\circ$ (Kothi) in these areas with the corresponding RMSE being nearly 2.54$^\circ$ and 0.02$^\circ$. However, since the LIA is dependent on the slope values (Eq. \eqref{eq:sa}), the DEM errors do not significantly influence the LIA. Also, in the FSD inversion model and the vertical wavenumber calculation (used in the SSD estimation) given by Eq. \eqref{eq:7} and Eq. \eqref{seq:vn} respectively, the sine ($\sin$) of the LIA is considered. So, the minute changes in the LIA do not strongly affect the FSD and SSD estimates which are obtained after applying sufficient ensemble averaging operation (section \ref{sec:method}). Evidently, the LIA only changes by about 1.9$^\circ$ near the Dhundi base station and thus, the FSD and SSD results are not exhibiting any sizeable impact from the associated DEM errors.
 
-Therefore, the SA concerning the DEM errors and its propagation highlights that the subsequent LIA errors are not directly governed by the changes in the elevation values, rather the slopes in $x$ and $y$ directions (section \ref{sssec:sa}) act as the primary error sources. Also, the ALOS PALSAR DEM is sufficiently accurate even in the complex terrains and hence, its usage in the LIA computation is justified. However, it is noteworthy that several of the DGPS measurements had been acquired through the kinematic mode (section \ref{sssec:field}) which essentially implies the ground observations themselves to be associated with minor erroneous altitude measurements. This could be the reason behind the low RMSE in the Dhundi area
-(most points had been surveyed through the static mode) whereas, in the Kothi region, the kinematic mode had to be relied upon due to the inaccessibility or the absence of any suitable locations for setting up the base.
+Therefore, the SA concerning the DEM errors and its propagation highlights that the subsequent LIA errors are not directly governed by the changes in the elevation values, rather the slopes in $x$ and $y$ directions (section \ref{sssec:sa}) act as the primary error sources. Also, the ALOS PALSAR DEM is sufficiently accurate even in the complex terrains and hence, its usage in the LIA computation is justified.
 
-\subsubsection{Effects of Terrain Attributes}
-\label{sssec:terrain}
-
-As the final step of the SA task, the effects of the aspect, elevation, and slope on the layover, forests, scattering mechanisms (section \ref{ssec:scat}), FSD, and SSD are considered, the analysis of which is provided below. Additionally, the fresh snow cover area (FSCA) and standing snow cover area (SSCA) are also computed for all these three terrain attributes.
-
-\paragraph*{Aspect}
-
-In order to quantify the snow depth variations with the aspect, the layover, forest, FSCA and SSCA have been computed for each of the slope directions. Moreover, the mean FSD and SSD over each such direction are calculated to check which aspect has the highest amount of snow accumulation and whether these are following similar spatial patterns found by \cite{Jain2009} in their research conducted over the Beas watershed.
-
-The area analysis is shown in Figure \ref{subfig:area_aspect} where, $A_layover$ , $A_forest$ , $A_{Zi}$ , $A_f$ , $A_ s$ , and $A_{total}$ denote the layover area (contains shadow as well), forest area, scattering zone ($Zi$, $\forall i \in$ [1, 9], section \ref{sssec:ua}) area, FSCA, SSCA, and the total area respectively (January 8, 2016 data). However, since the surface (Z3) and volume scatterings (Z5 and Z8) are used in the FSD and SSD inversion models, the other scattering type areas are not mentioned explicitly. In addition, the mean FSD ($\mu_{A_f}$) and SSD ($\mu_{A_s}$) variations over $A_f$ and $A_s$ respectively are depicted in Figure \ref{subfig:sd_aspect}.
-
-\afterpage{\FloatBarrier}
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/Area_Aspect.png}}
-        \caption{Layover, forest, surface scattering, volume scattering, and snow cover areas.}
-        \label{subfig:area_aspect}
-    \end{subfigure}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/SD_Aspect.png}}
-        \caption{Mean FSD and SSD over different aspects.}
-        \label{subfig:sd_aspect}
-    \end{subfigure}
-    \caption{All the SD estimates are rounded to 2 decimal places. Also, $A_f = A_s$ for all the aspects because only layover and forest masks have been applied (section \ref{sssec:ua}). So, the fresh snow and standing snow are always present together. Additionally, the scattering areas include the forested regions, and the forest and layover areas may overlap. So, the total area, $A_{total}$ in \subref{subfig:area_aspect} cannot be obtained simply by summing up the other areas. In \subref{subfig:sd_aspect}, the standard errors, rounded to 3 decimal places, are shown to quantify the associated uncertainty.}
-    \label{fig:sa_aspect}
-\end{figure}
-
-Furthermore, the highest amount of SSD (total $\mu_{A_s} \approx$ 341.21 cm) is present in the northern slopes (N, NE, and NW) which qualitatively agrees with the results obtained by \cite{Jain2009}. But in the case of FSD, the southern slopes (S, SE, and SW) have a total $\mu_{A_f} \approx$ 59.78 cm which is slightly higher than the northern slopes (total $\mu_{A_f} \approx$ 52.41 cm). One plausible reason for this could be the strong wind drift phenomenon which is commonly observed in the Himalayan terrains \citep{Jain2009, Lehning2008}. Also, the rugged topography is significantly responsible for reducing the surface coherence \citep{Leinss2014} and could also be a valid reason for this observation.
-
-\paragraph*{Elevation}
-
-For performing the SA of the layover area, forest area, scattering class areas, FSCA, and SSCA with respect to the elevation changes, six elevation classes— E1($le$ 2500 m), E2 (2500-3000 m], E3 (3000-3500 m), E4 (3500-4000 m), E5 (4000-4500 m), and E6 ($>$ 4500 m) have been defined in a 500 m interval. The area analysis is shown in Figure \ref{subfig:area_elevation} and the FSD and SSD variations are shown in Figure \ref{subfig:sd_elevation}. Again, $A_f$ = $A_s$ since only forest and layover masks have been applied.
-
-\afterpage{\FloatBarrier}
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/Area_Elevation.png}}
-        \caption{Layover, forest, surface scattering, volume scattering, and snow cover areas.}
-        \label{subfig:area_elevation}
-    \end{subfigure}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/SD_Elevation.png}}
-        \caption{Mean FSD and SSD over different elevation classes.}
-        \label{subfig:sd_elevation}
-    \end{subfigure}
-    \caption{All the SD estimates are rounded to 2 decimal places. Also, \subref{subfig:area_elevation} has been generated in a similar way as that of Figure \ref{subfig:area_aspect}. Similarly, the standard errors like those in Figure \ref{subfig:sd_aspect} are reported.}
-    \label{fig:sa_elevation}
-\end{figure}
-
-Accordingly, the elevation based SA shows that the maximum $\mu_{A_f} \approx$ 19.81 cm and $\mu_{A_s} \approx$ 115.66 cm occurs in the E1 and E6 classes respectively. Since E1 and E6 have low ground areas (1.4 km\textsuperscript{2} and 4.72 km\textsuperscript{2}), so the high $\mu_{A_f}$ and $\mu_{A_s}$ are caused by the less number of pixels which have been averaged. However, the maximum $A_{Z3} \approx$ 2.1 km\textsuperscript{2} and $A_{Z5} + A_{Z8} \approx$ 5.64 km\textsuperscript{2} are present in the E3 class even though the total area of E4 (27.73 km\textsuperscript{2}) is 0.54\% higher than that of E3 (27.58 km\textsuperscript{2}). In addition, the total mask area, $A_{layover} + A_{forest} \approx$ 15.9 km\textsuperscript{2} is greater in E3 as compared to that of E4 (11.23 km\textsuperscript{2}).
-
-Despite these masked out regions and lower $A_f = A_s \approx$ 13.71 km\textsuperscript{2} when compared to E4 (16.88 km\textsuperscript{2}), $\mu_{A_f} \approx$ 17.31 cm and $\mu_{A_s} \approx$ 110.82 cm of class E3 closely follows those of E4 (Figure \ref{subfig:sd_elevation}). Therefore, E3 could be within the elevation threshold after which the snow accumulation starts decreasing and could also consist of favourable aspect and slope conditions for snow deposition \citep{Jain2009, Lehning2008}.
-
-\paragraph*{Slope}
-In order to carry out the SA of the same variables as done for the aspect and elevation classes, three slope zones have been defined. These are S1 ($\le$ 20$^\circ$), S2 (20$^\circ$-40$^\circ$), and S3 ($\ge$ 40$^\circ$) which correspond to low, medium, and high slope values. From the area and SD analysis shown in Figure \ref{subfig:area_slope} and Figure \ref{subfig:sd_slope} respectively, it is seen that even though the total area, $A_{total} \approx$ 52.32 km\textsuperscript{2} of S2 is substantially larger than that of S1 ($A_{total} \approx$ 17.36 km\textsuperscript{2}), $\mu_{A_f} \approx$ 20.26 cm of S1 is higher as compared to S2 ($\mu_{A_f} \approx$ 17.51 cm). Additionally, both the surface scattering area, $A_{Z3} \approx$ 4.23 km\textsuperscript{2} and total volume scattering area, $A_{Z5} + A_{Z8} \approx$ 11.98 km\textsuperscript{2} are significantly higher in S2. Although, most of the layover (including shadow) and forest areas, $A_{layover} + A_{forest} \approx$ 21.56 km\textsuperscript{2} (including overlaps) lie in class S2, still, the remaining $A_f = A_s \approx$ 32.22 km\textsuperscript{2} $> A_{total}$ of S1. Therefore, the FSD estimates in class S1 could either be potentially overestimated or could be attributed to the wind drift and preferential deposition phenomena \citep{Lehning2008}.
-
-\afterpage{\FloatBarrier}
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/Area_Slope.png}}
-        \caption{Layover, forest, surface scattering, volume scattering, and snow cover areas.}
-        \label{subfig:area_slope}
-    \end{subfigure}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/SD_Slope.png}}
-        \caption{Mean FSD and SSD over different slope classes.}
-        \label{subfig:sd_slope}
-    \end{subfigure}
-    \caption{All the SD estimates are rounded to 2 decimal places. Again, the standard errors are displayed like those in Figure \ref{subfig:sd_aspect} and Figure \ref{subfig:sd_elevation}.}
-    \label{fig:sa_slope}
-\end{figure}
-
-Apart from this, the maximum $\mu_{A_s} \approx$ 128.3 cm is present in the S3 class despite the lower $A_{Z3} \approx$ 1 km\textsuperscript{2} and $A_{Z5} + A_{Z8} \approx$ 3.01 km\textsuperscript{2} when compared to S2. Again, there is a possibility of overestimation of the SSD estimates in S3. This is because, the total volume scattering percentage in S2 (37.18\%) is higher than both S1 (33.64\%) and S3 (32.43\%) wherein the percentages are calculated based on the number of valid pixel areas (i.e., $A_f = A_s$) of each slope class.
-
-Nevertheless, snow being a highly variable distributed scatterer, slope alone cannot determine whether the FSD and SSD estimates are overestimated or underestimated. Moreover, the effects of the elevation and aspect have not been considered for this particular SA. This could have a significant impact on the area analysis as favourable altitudinal and directional (slope) variations could result in S1 or S3 having higher snow accumulation. In addition, the S2 class needs to be further segregated so that more variations in the areas and SD estimates can be observed. This is another reason why a linear trend is being depicted in Figure \ref{subfig:sd_slope} since most of the study area is falling in the S2 class.
-
-Thus, the overall SA which included model parameter tuning or optimisation along with the DEM and LIA error analysis, and terrain characteristics, verifies the fact that in the presence of extreme hydrometeorological conditions, snow depth retrieval becomes a complex process involving several uncertainty sources (section \ref{ssec:scat}). In particular, the vertical wavenumber scaling is a subjective process requiring prior knowledge of the maximum SD of the study area (section \ref{ssec:ssd}). Also, the window sizes are critical for obtaining reliable results (sections \ref{sssec:fsd_param} and \ref{sssec:ssd_param}). Still, sufficient SA has been carried out to address most of the key modelling issues for the FSD and SSD computation.
-
-\subsection{Comparative Analysis of the Snow Properties}
+\subsection{Comparative Analysis of the Estimates}
 \label{ssec:snow}
 
-In order to visually observe the spatial patterns of the FSD and SSD estimates, suitable maps have been prepared which are shown in Figure \ref{subfig:fsd_map} and Figure \ref{subfig:ssd_map} respectively. Moreover, the resultant FSWE and SSWE maps are depicted in Figure \ref{subfig:fswe_map} and Figure \ref{subfig:sswe_map} which are computed by multiplying the constant snow densities, $\rho_f = $ 0.07 g/cm\textsuperscript{3} and $\rho_s = $ 0.315 g/cm\textsuperscript{3} to the FSD and SSD values respectively.
+In order to visually observe the spatial patterns of the FSD and SSD estimates, suitable maps have been prepared which are shown in Figure \ref{subfig:fsd_map} and Figure \ref{subfig:ssd_map} respectively. Here, the resultant FSWE and SSWE maps are not shown as these have been computed by multiplying the constant snow densities, $\rho_f = $ 0.07 g/cm\textsuperscript{3} and $\rho_s = $ 0.315 g/cm\textsuperscript{3} to the FSD and SSD values respectively. Therefore, they have similar spatial characteristics like those of the snow depth maps.
 
 \afterpage{\FloatBarrier}
 \begin{figure}[htb]
@@ -837,30 +751,11 @@ In order to visually observe the spatial patterns of the FSD and SSD estimates, 
     \label{fig:sd_maps}
 \end{figure}
 
-As discussed earlier in sections \ref{sssec:fsd_param} and \ref{sssec:ssd_param}, the optimal FSD and SSD ensemble window sizes are 65$\times$65 and 57$\times$57 respectively. The maps in Figure 28 and Figure 29 show these ensemble averaged
-estimates wherein $μ_f \approx$ 18.93 $\pm$ 5.03 cm ($\sigma_f \approx$ 0.1 cm) and $\mu_s \approx$ 54.64 $\pm$ 5.19 cm ($\sigma_s \approx$ 0.58 cm) are observed over the 3$\times$3 neighbourhood window surrounding the Dhundi area with the corresponding $\mu_{fs} \approx$ 13.25 $\pm$ 5.02 mm ($\sigma_{fs} \approx$ 0.07 mm) and $\mu_{ss} \approx$ 172.10 $\pm$ 5.61 mm ($\sigma_{ss} \approx$ 1.82 mm). Here, the uncertainties are calculated based on the standard error of the estimate and the SPA measurement biases of 5 cm and 5 mm for the SD and SWE have been assumed respectively.
-
-\afterpage{\FloatBarrier}
-\begin{figure}[htb]
-    \centering
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/FSWE.png}}
-        \caption{}
-        \label{subfig:fswe_map}
-    \end{subfigure}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
-    \begin{subfigure}[t]{\textwidth}
-        \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/SSWE.png}}
-        \caption{}
-        \label{subfig:sswe_map}
-    \end{subfigure}
-    \caption{Zoomed views of the \subref{subfig:fswe_map} FSWE map and \subref{subfig:sswe_map} SSWE map for January 8, 2016. The ground points in these maps are the exact same ones shown in Figure \ref{fig:sd_maps}.}
-    \label{fig:swe_maps}
-\end{figure}
+As discussed earlier in sections \ref{sssec:fsd_param} and \ref{sssec:ssd_param}, the optimal FSD and SSD ensemble window sizes are 65$\times$65 and 57$\times$57 respectively. The maps in Figure \ref{fig:sd_maps} show these ensemble averaged estimates wherein $\mu_f \approx$ 18.93 $\pm$ 5.03 cm ($\sigma_f \approx$ 0.1 cm) and $\mu_s \approx$ 54.64 $\pm$ 5.19 cm ($\sigma_s \approx$ 0.58 cm) are observed over the 3$\times$3 neighbourhood window surrounding the Dhundi area with the corresponding $\mu_{fs} \approx$ 13.25 $\pm$ 5.02 mm ($\sigma_{fs} \approx$ 0.07 mm) and $\mu_{ss} \approx$ 172.10 $\pm$ 5.61 mm ($\sigma_{ss} \approx$ 1.82 mm). Here, the uncertainties are calculated based on the standard error of the estimate and the SPA measurement biases of 5 cm and 5 mm for the SD and SWE have been assumed respectively.
 
 In addition, the overall mean FSD and SSD are 17.90 cm and 112.17 cm respectively wherein the standard deviations are found to be $\sim$6.46 cm and $\sim$30.80 cm. Accordingly, the mean FSWE and SSWE are $\sim$12.12 mm and $\sim$377.81 mm respectively where the associated standard deviations are $\sim$4.46 mm and $\sim$101.55 mm. 
 
-The high SSD and SSWE standard deviations for the complete region highlight the extreme topographical conditions present in the study area. These variations can be confirmed from the ground survey (section \ref{sssec:field}) where the points (shown in Figure \ref{fig:sd_maps} and Figure \ref{fig:swe_maps}) had been acquired by considering the terrain undulations. Also, the aspect, slope, and elevation significantly influence the FSD and SSD estimates, the details of which have been discussed in the previous section.
+The high SSD and SSWE standard deviations for the complete region highlight the extreme topographical conditions present in the study area. These variations can be confirmed from the ground survey (section \ref{sssec:field}) where the points (shown in Figure \ref{fig:sd_maps} had been acquired by considering the terrain undulations. Also, the aspect, slope, and elevation significantly influence the FSD and SSD estimates, the details of which have been discussed in the previous section.
 
 Apart from this, it can be observed that these estimates are lower in the Dhundi base station area as compared to the surrounding regions. This phenomenon can be attributed to the presence of the human settlements (Figure \ref{subfig:base}) near the base point and are expected to have less snow accumulation than the natural surroundings. Moreover, the effect of multiple or double bounce scattering (Z4) near the Dhundi base is prominent even during the winter (Figure \ref{subfig:wishart_jan}). So, this could effectively reduce the copolar, volume and surface coherences (sections \ref{sssec:fsd_param} and \ref{sssec:ssd_param}) thereby explaining this observation.
 
