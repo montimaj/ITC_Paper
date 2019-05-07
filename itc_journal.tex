@@ -1,6 +1,6 @@
 \documentclass[review]{elsarticle}
 
-\usepackage{lineno,hyperref, graphicx, amsmath, esvect, amssymb, ragged2e, titlesec, afterpage, placeins}
+\usepackage{lineno,hyperref, graphicx, amsmath, esvect, amssymb, ragged2e, afterpage, placeins}
 \usepackage[labelformat=simple]{subcaption}
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -13,10 +13,10 @@
 
 \setcounter{secnumdepth}{4}
 
-\titleformat{\paragraph}
-{\normalfont\normalsize\it}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%\titleformat{\paragraph}
+%{\normalfont\normalsize\it}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}
+%{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% Elsevier bibliography styles
@@ -119,7 +119,7 @@ Synthetic Aperture Radar, Copolar Phase Difference, Pol-InSAR, Snow Physical Pro
 \label{sec:Intro}
 
 Snow depth (SD) and snow water equivalent (SWE) are two of the most important physical properties of snow and are extensively used in hydrological models that relate to snowmelt runoff and snow avalanche predictions \citep{Thakur2017}. While snow depth or snow height refers to the distance of the ground to the snow surface, SWE quantifies the amount of water present in a snowpack (layered snow formed by accumulation over time). Theoretically, SWE is defined as the product of snow depth and snow density and can be conceptualised as the amount of liquid water obtained owing to the instantaneous melting of
-an entire snowpack \citep{Tedesco2015}. The accurate estimation of these two parameters is quite challenging depending upon the data availability and variety, mathematical model selection, and the hydrometeorological conditions of the area of interest. Hence, it is considered to be an important research element in the cryosphere paradigm \citep{Leinss2014, Leinss2015, Leinss2016}.
+an entire snowpack \citep{Tedesco2015}. The accurate estimation of these two parameters is quite challenging depending upon the data availability and variety, mathematical model selection, and the hydrometeorological conditions of the area of interest. Hence, it is considered to be an important research element in the cryosphere paradigm \citep{Leinss2014, Leinss2015, Leinss2016, Conde2018}.
 
 Due to the difficulties posed by in-situ or ground based measurements of snow depth and SWE in rugged terrains, remote sensing techniques coupled with adequately sampled (both in space and time domains) ground measurements are widely used to improve the quality of these estimated parameters over considerably large areas \citep{Takala2011}. Currently, LiDAR (Light Detection and Ranging) and spaceborne SAR are the most popular techniques used in the studies related to snow, ice and the cryosphere in general \citep{Deems2013, Leinss2014, Tedesco2015}. However, LiDAR can only be used to determine the height of the snow and cannot be used for measuring other physical properties such as snow density and snow wetness. In addition, the operating cost of LiDAR is sufficiently high and is also weather dependent \citep{Deems2013}. As a result, spaceborne SAR systems benefit from substantial coverage (globally available), cloud insensitivity, night-time operability and are extensively used to measure the snow physical properties sufficiently at high spatial resolutions \citep{Moreira2013, Thakur2012}.
 
@@ -135,9 +135,9 @@ band or below) penetrate through dry snow whereby the underneath frozen soil or 
 
 A polarimetric SAR system utilises the polarised radar echoes to obtain information about the specific scattering mechanism for a particular target. In essence, by using a coherent analysis which incorporates the phase of different polarimetric channels, it is possible to differentiate various scattering mechanisms \citep{Lee2009}. Nowadays, PolSAR based algorithms that work on the polarimetric backscatter signal have been widely adopted for various snow related applications such as the classification of dry and wet snow, measuring snow wetness and snow density \citep{Singh2017, Snehmani2010, Thakur2012, Thakur2017, Usami2016}. In this context, the roll-invariant entropy/anisotropy/alpha ($H/A/{\alpha}$) decomposition and Wishart classification have been successfully tested to classify different snow types as well as demarcate snow covered areas \citep{Cloude2010,Lee2009,Singh2014}. A few years back, the use of spaceborne PolSAR for snow height determination had been introduced, wherein the relationship between the copolar phase difference (CPD) and fresh snow depth (FSD) is quantitatively analysed by deriving a theoretical model \citep{Leinss2014}.
 
-Interferometric SAR techniques find significant usage in the cryosphere domain and have been used to construct highly accurate digital elevation models (DEMs), measure dry snow depth and SWE in several studies \citep{Guneriussen2001, Lei2016, Leinss2015, Li2017, Liu2017}. The principle of SAR interferometry builds upon measured phase differences between radar images of the same area acquired at different temporal instances (repeat-pass) or different viewing geometries but same epoch (single-pass) \citep{Hanssen2001}. Still, the inherent problems of spatial and temporal decorrelations and atmospheric inhomogeneities are the primary limiting factors in the studies involving InSAR and its variant D-InSAR (Differential InSAR) \citep{Pepe2017}. These factors are responsible for inaccurate and low-coherence measurements, thereby leading to a potential decrease in the accuracy of the final results. In cryosphere research, the loss of coherence in InSAR is heavily influenced by the snow humidity, melting, and refreezing and is also susceptible to the variations in both spatial and temporal baselines. Although data assimilation algorithms like 3DVAR (three dimensional variation) and EnKF (Ensemble Kalman Filter) have been applied to the produced outputs of the SD inversion models for minimizing the effect of temporal decorrelation, the applicability and feasibility of such algorithms remains untested on varying data sets and study areas \citep{Liu2017}.
+Interferometric SAR techniques find significant usage in the cryosphere domain and have been used to construct highly accurate digital elevation models (DEMs), measure dry snow depth and SWE in several studies \citep{Conde2018, Guneriussen2001, Leinss2015, Li2017, Liu2017}. The principle of SAR interferometry builds upon measured phase differences between radar images of the same area acquired at different temporal instances (repeat-pass) or different viewing geometries but same epoch (single-pass) \citep{Hanssen2001}. Still, the inherent problems of spatial and temporal decorrelations and atmospheric inhomogeneities are the primary limiting factors in the studies involving InSAR and its variant D-InSAR (Differential InSAR) \citep{Pepe2017}. These factors are responsible for inaccurate and low-coherence measurements, thereby leading to a potential decrease in the accuracy of the final results. In cryosphere research, the loss of coherence in InSAR is heavily influenced by the snow humidity, melting, and refreezing and is also susceptible to the variations in both spatial and temporal baselines. Although data assimilation algorithms like 3DVAR (three dimensional variation) and EnKF (Ensemble Kalman Filter) have been applied to the produced outputs of the SD inversion models for minimizing the effect of temporal decorrelation, the applicability and feasibility of such algorithms remains untested on varying data sets and study areas \citep{Liu2017}.
 
-The Pol-InSAR technique works on the coherent combination of both PolSAR and InSAR observations, thereby enabling the interferogram generation in arbitrary transmit and receive channels \citep{Cloude1998, Cloude2005, Cloude2010}. It has been widely used for estimating tree height in forested regions and can be effectively applied to natural or artificial volume scatterers including snow and ice \citep{Hajnsek2009, Kugler2015, Kumar2017, Papathanassiou2001}. In essence, the identification of different scattering processes (PolSAR) and the vertical profile sensitivity (InSAR) are unique to this technique. Therefore, the applicability of Pol-InSAR based SD retrieval could prove its potential in case of the standing snow depth (SSD) \citep{Thakur2012, Thakur2017}.
+The Pol-InSAR technique works on the coherent combination of both PolSAR and InSAR observations, thereby enabling the interferogram generation in arbitrary transmit and receive channels \citep{Papathanassiou2001, Cloude2005, Cloude2010}. It has been widely used for estimating tree height in forested regions and can be effectively applied to natural or artificial volume scatterers including snow and ice \citep{Hajnsek2009, Kugler2015, Kumar2017, Papathanassiou2001}. In essence, the identification of different scattering processes (PolSAR) and the vertical profile sensitivity (InSAR) are unique to this technique. Therefore, the applicability of Pol-InSAR based SD retrieval could prove its potential in case of the standing snow depth (SSD) \citep{Thakur2012, Thakur2017}.
 
 The prime focus of this research is to estimate the FSD and SSD using PolSAR and Pol-InSAR respectively. In addition, the corresponding fresh SWE (FSWE) and standing SWE (SSWE) are to be determined, for which the respective snow densities need to be known. Essentially, the study involves sensitivity analysis of the various model parameters along with the identification of the different uncertainty sources present in the chosen geographical area. 
 
@@ -601,7 +601,7 @@ underlying assumption of a smooth surface in the FSD inversion model does not ho
 
 The SSD inversion model as described from the implementation or methodological perspective in section \ref{ssec:ssd} incorporates several user-defined free parameters. Thus, it is necessary to conduct an appropriate SA for the hybrid Pol-InSAR based volumetric height (SSD) retrieval algorithm. Accordingly, the various model parameters and their optimisation are discussed below.
 
-\paragraph*{Volume and Surface Coherence Ensemble Window}
+\subsubsection*{Volume and Surface Coherence Ensemble Window}
 
 The ensemble windows corresponding to the number of looks (L) in Eq. (12) must be suitably chosen so as to maximise both the volume coherence amplitude, $\gamma\left(\vv{w_v}\right)$, and the surface coherence amplitude, $\gamma\left(\vv{w_s}\right)$. As a result, the SA for these window sizes is an important aspect of this work.
 
@@ -620,7 +620,7 @@ It can be seen that for the executed test cases, with increasing $L$, there is a
 
 However, there exist several free parameters in this Pol-InSAR based SSD inversion model (section \ref{ssec:ssd}) and hence, the volume and surface coherence ensemble windows need to be kept constant ($L =$ 3) for the subsequent SA of the other parameters.
 
-\paragraph*{Scaling Parameters}
+\subsubsection*{Scaling Parameters}
 
 It has been previously discussed in section \ref{ssec:ssd} that there are two scaling parameters involved in the SSD estimation process. These are the vertical wavenumber scaling parameter ($\eta^\prime\in\mathbb{R}_{>0}^+$) and the scaling factor ($\eta\in$ [0, 1]) of the hybrid DEM differencing approach developed by \cite{Cloude2010}. Here, the SA of only $\eta$ is carried out and $\eta^\prime = $ 5 is kept constant throughout the entire workflow. Also, the volume coherence threshold, $\tau_v = $ 0.6, $L =$ 3, ground phase median ensemble filter window (21$\times$21), vertical wavenumber ensemble average window (21$\times$21), and the SSD ensemble average window of size 57$\times$57 are unchanged during this SA.
 
@@ -635,7 +635,7 @@ The monotonically increasing SSD with respect to increasing $\eta$ are displayed
 
 In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 49.64 cm ($\sigma_s \approx$ 0.54 cm) is obtained with $\sim$90.42\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.65, the best SSD and SSWE accuracies of 99.53\% ($\mu_s \approx$ 54.64 cm) and 99.48\% ($\mu_{ss} \approx$ 172.10 mm) respectively are achieved over Dhundi with low standard deviations ($\sigma_s \approx$ 0.58 cm, $\sigma_{ss} \approx$ 1.82 mm) accounting for high reliability. These results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
 
-\paragraph*{Computing $\sinc$ Inverse}
+\subsubsection*{Computing $\sinc$ Inverse}
 In order to test the accuracy of the $\sinc_\pi$ inverse function, sample test data representing the actual inverse, $\alpha_r$, have been prepared as shown in Table \ref{table:2}. Next, the $\sinc_\pi$ of these data, $\sinc_{\pi}\left(\alpha_r\right)$, is computed which essentially corresponds to the possible $\gamma\left(\vv{w_v}\right)$ values. So, the idea of performing SA in this scenario is to check the accuracy of the calculated $\sinc_{\pi_C}^{-1}$ (Eq. \eqref{seq:ncloude}) and $\sinc_{\pi_S}^{-1}$ (Eq. \eqref{seq:secant}) of the $\sinc_{\pi}\left(\alpha_r\right)$ values by comparing these with $\alpha_r$.
 
 \begin{table}[ht]
@@ -686,7 +686,7 @@ Table \ref{table:2} and Table \ref{table:3} are rounded to 3 decimal places.
 
 Therefore, by performing the SA of the $\sinc_{\pi_C}^{-1}$, $\sinc_{\pi_S}^{-1}$, $\sinc_C^{-1}$, and $\sinc_S^{-1}$, it is clearly understood that the secant method provides highly accurate results. Hence, in this work, $\sinc_{\pi_S}^{-1}$ is applied for solving Eq. \eqref{seq:hybrid_dem} wherein the $\sinc_{\pi_C}^{-1}\left(\gamma\left(\vv{w_v}\right)\right)$ value is used as an initial guess to the secant method for faster convergence.
 
-\paragraph*{SSD Ensemble Window}
+\subsubsection*{SSD Ensemble Window}
 
 Another essential free parameter used in the Pol-InSAR based SSD estimation model (section \ref{ssec:ssd}) is the SSD ensemble averaging window size. By keeping $\eta = $ 0.65, $\eta^\prime = $ 5, and other ensemble window sizes constant, the SA has been carried out to observe the SSD variations which are shown in Figure \ref{fig:swindow}. Here, the ensemble windows are the same which have been previously applied for the FSD values (section \ref{sssec:fsd_param}) so as to appropriately compare the SSD and FSD estimates.
 
@@ -707,7 +707,7 @@ accuracy of the ALOS PALSAR DEM. In essence, the observed errors are then used t
 
 The DEM errors calculated using the Dhundi and Kothi DGPS readings are displayed in Figure \ref{subfig:dem_error} and the subsequent LIA differences (computed from the corrected and original DEMs) for these points are shown in Figure \ref{subfig:lia_error}. As seen from these graphs, the absolute elevation errors range from 0.08 m to 16.30 m in the Dhundi region, whereas these vary from 0.19 m to 25.32 m in the Kothi area. Accordingly, the RMSE values for the elevation errors are approximately 6.71 m and 8.8 m respectively.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{\textwidth}
         \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/DEM_Error.png}}
