@@ -2,6 +2,7 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{lineno,graphicx, amsmath, esvect, amssymb, ragged2e, afterpage, placeins}
+\usepackage{setspace}
 \usepackage[colorlinks]{hyperref}
 \usepackage[labelformat=simple]{subcaption}
 \numberwithin{equation}{section}
@@ -21,6 +22,8 @@
 %\journal{Cold Regions Science and Technology}
 \fancypagestyle{pprintTitle}{%
 \chead{\small{\textit{This is a revised preprint submitted to the \href{https://www.journals.elsevier.com/cold-regions-science-and-technology/editorial-board}{Elsevier CRST} journal and hosted by \href{https://eartharxiv.org/6v4h3/}{EarthArXiv}.}}}
+\lfoot{}
+\cfoot{}
 %\renewcommand{\headrulewidth}{0.0pt}
 }
 
@@ -90,6 +93,7 @@
 }{|}}}}
 
 \DeclareMathOperator{\sinc}{sinc}
+\doublespacing
 \begin{document}
 \linenumbers
 \begin{frontmatter}
@@ -109,22 +113,24 @@
 %\ead{praveen@iirs.gov.in}
 \author[itc]{\orcidicon{0000-0001-8212-7221} Ling Chang}
 %\ead{ling.chang@utwente.nl}
-\author[iirs]{\newline\orcidicon{0000-0002-2442-7143} Shashi Kumar}
 %\ead{shashi@iirs.gov.in}
-\author[sase]{\orcidicon{0000-0003-4946-4634} Sneh Mani}
+\author[sase]{\newline\orcidicon{0000-0003-4946-4634} Sneh Mani}
 %\ead{snehmani@gmail.com}
+\author[iirs]{\orcidicon{0000-0002-2442-7143} Shashi Kumar}
 
 \address[itc]{Faculty of Geo-information Science and Earth Observation (ITC), University of Twente}
 \address[iirs]{Indian Institute of Remote Sensing (IIRS), ISRO}
 \address[sase]{Snow and Avalanche Study Establishment (SASE), DRDO}
 
 \begin{abstract}
+\doublespacing
 \begin{linenumbers}
-\small{Snow depth (SD) and Snow Water Equivalent (SWE) constitute essential physical properties of snow and find extensive usage in the hydrological modelling domain. However, the prominent impact of the hydrometeorological conditions and difficult terrain conditions inhibit accurate measurement of the SD and SWE--- an ongoing research problem in the cryosphere paradigm. In this context, spaceborne synthetic aperture radar (SAR) systems benefit from global coverage at sufficiently high spatial and temporal resolutions. Still, existing polarimetric and interferometric SAR techniques are susceptible to high volume scattering resulting from the increased snow grain sizes due to the standing (or old) snow formation driven by the temperature induced snow metamorphosis process. Hence, to model this volume decorrelation, the polarimetric SAR interferometry (Pol-InSAR) technique can be effectively applied. In this work, the standing snow depth (SSD) and its corresponding standing snow water equivalent (SSWE) are estimated using the single-baseline Pol-InSAR based hybrid Digital Elevation Model (DEM) differencing and coherence amplitude inversion model. To achieve this, six TerraSAR-X, TanDEM-X Coregistered Single look Slant range Complex (CoSSC) bistatic quad-pol acquisitions between December 2015 and January 2016 over Dhundi (situated in the Beas watershed, northwestern Himalayas, India) are used. Due to the associated problems of model parameter tuning, complex topographical conditions, and limited ground-truth measurements, appropriate sensitivity analyses have been carried out for the parameter optimisation. Furthermore, the uncertainty sources are identified by performing a summer (June 8, 2017) and wintertime (January 8, 2016) comparative analysis of the study area which quantitatively highlights the changes in the percentages of the surface and volume scatterings. Evidently, the improved model displays sufficiently high overall SSD accuracy with coefficient of determination ($R^2$) $\approx$ 0.97, Mean Absolute Error (MAE) $\approx$ 1.56 cm, and Root Mean Square Error (RMSE) $\approx$ 1.89 cm. Additionally, the respective SSWEs have been calculated by assuming a fixed snow density for each epoch wherein the overall error metrics are $R^2 \approx$ 0.78, MAE $\approx$ 4.84 mm, and RMSE $\approx$ 6.01 mm. Therefore, this research successfully demonstrates the practicability of the improved Pol-InSAR model for SD estimation over rugged terrains.}
+\small{Snow depth (SD) and Snow Water Equivalent (SWE) constitute essential physical properties of snow and find extensive usage in the hydrological modelling domain. However, the prominent impact of the hydrometeorological conditions and difficult terrain conditions inhibit accurate measurement of the SD and SWE--- an ongoing research problem in the cryosphere paradigm. In this context, spaceborne synthetic aperture radar (SAR) systems benefit from global coverage at sufficiently high spatial and temporal resolutions. Still, existing polarimetric and interferometric SAR techniques are susceptible to high volume scattering resulting from the increased snow grain sizes due to the standing (or old) snow formation driven by the temperature induced snow metamorphosis process. Hence, to model this volume decorrelation, the polarimetric SAR interferometry (Pol-InSAR) technique can be effectively applied. In this work, the standing snow depth (SSD) and its corresponding standing snow water equivalent (SSWE) are estimated using the single-baseline Pol-InSAR based hybrid Digital Elevation Model (DEM) differencing and coherence amplitude inversion model. To achieve this, six TerraSAR-X, TanDEM-X Coregistered Single look Slant range Complex (CoSSC) bistatic quad-pol acquisitions between December 2015 and January 2016 over Dhundi (situated in the Beas watershed, northwestern Himalayas, India) are used. Due to the associated problems of model parameter tuning, complex topographical conditions, and limited ground-truth measurements, appropriate sensitivity analyses have been carried out for the parameter optimisation. Furthermore, the uncertainty sources are identified by performing a summer (June 8, 2017) and wintertime (January 8, 2016) comparative analysis of the study area which quantitatively highlights the changes in the percentages of the surface and volume scatterings. Evidently, the improved model displays sufficiently high overall SSD accuracy with coefficient of determination ($R^2$) $\approx$ 0.96, Mean Absolute Error (MAE) $\approx$ 1.61 cm, and Root Mean Square Error (RMSE) $\approx$ 2.16 cm. Additionally, the respective SSWEs have been calculated by assuming a fixed snow density for each epoch wherein the overall error metrics are $R^2 \approx$ 0.71, MAE $\approx$ 5.19 mm, and RMSE $\approx$ 6.84 mm. Therefore, this research successfully demonstrates the practicability of the improved Pol-InSAR model for SD estimation over rugged terrains.}
 \end{linenumbers}
 \end{abstract}
 
 \begin{keyword}
+\doublespacing
 \small{Pol-InSAR, Microwave Remote Sensing, Synthetic Aperture Radar, Polarimetry, Interferometry, Snow Depth, Snow Water Equivalent, Watershed, Sensitivity Analysis}
 \end{keyword}
 
@@ -133,8 +139,7 @@
 \section{Introduction}
 \label{sec:Intro}
 
-Snow depth (SD) and snow water equivalent (SWE) are two of the most important physical properties of snow and are extensively used in hydrological models that relate to snowmelt runoff and snow avalanche predictions \citep{Thakur2017}. While snow depth or snow height refers to the distance of the ground to the snow surface, SWE quantifies the amount of water present in a snowpack (layered snow formed by accumulation over time). Theoretically, SWE is defined as the product of snow depth and snow density and can be conceptualised as the amount of liquid water obtained owing to the instantaneous melting of
-an entire snowpack \citep{Tedesco2015}. Obtaining accurate estimation of the SD and SWE is quite challenging depending upon the data availability, variety, and quality, parameterisation method, mathematical model selection, and the hydrometeorological conditions. Hence, it is considered to be an important research element in the cryosphere paradigm \citep{Leinss2014, Leinss2015, Leinss2016, Conde2018}.
+Snow depth (SD) and snow water equivalent (SWE) are two of the most important physical properties of snow and are extensively used in hydrological models that relate to snowmelt runoff and snow avalanche predictions \citep{Thakur2017}. While snow depth or snow height refers to the distance of the ground to the snow surface, SWE quantifies the amount of water present in a snowpack (layered snow formed by accumulation over time). Theoretically, SWE is defined as the product of snow depth and snow density and can be conceptualised as the amount of liquid water obtained owing to the instantaneous melting of an entire snowpack \citep{Tedesco2015}. Obtaining accurate estimation of the SD and SWE is quite challenging depending upon the data availability, variety, and quality, parameterisation method, mathematical model selection, and the hydrometeorological conditions. Hence, it is considered to be an important research element in the cryosphere paradigm \citep{Leinss2014, Leinss2015, Leinss2016, Conde2018}.
 
 Due to the difficulties posed by in-situ or ground based measurements of the SD and SWE in rugged terrains, remote sensing techniques coupled with adequately sampled (both in space and time domains) ground measurements are widely used to improve the quality of these estimated parameters over considerably large areas \citep{Takala2011}. Currently, LiDAR (Light Detection and Ranging) and spaceborne SAR (Synthetic Aperture Radar) are the most popular techniques used in the studies related to snow, ice and the cryosphere in general \citep{Deems2013, Leinss2014, Tedesco2015}. However, LiDAR can only be used to determine the height of the snow and cannot be used for measuring other physical properties such as snow density and snow wetness \citep{Tedesco2015, Leinss2014}. In addition, the operating cost of LiDAR is sufficiently high and is also weather dependent \citep{Deems2013}. As a result, spaceborne SAR systems benefit from substantial coverage (globally available), cloud insensitivity, all-day operability and are extensively used to measure the snow physical properties sufficiently at high spatial resolutions \citep{Moreira2013, Thakur2012}.
 
@@ -143,7 +148,7 @@ The applicability of SAR systems for snow cover monitoring was discussed as earl
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/Conceptual.png}
-    \caption{Conceptual diagram displaying the radar backscattering mechanism in hilly terrains. Adapted from \cite{Thakur2012}.}
+    \caption{\doublespacing Conceptual diagram displaying the radar backscattering mechanism in hilly terrains. Adapted from \cite{Thakur2012}.}
     \label{fig:concept}
 \end{figure}
 
@@ -215,11 +220,11 @@ RR                     & 90 & 45  & 0          & -90 \\ \hline
 \end{table}
 
 \subsubsection{Height Inversion Algorithm Details}
-In this study, the modified (also improved) hybrid DEM differencing and coherence amplitude based Pol-InSAR volumetric height inversion model as given by Eq. \eqref{seq:hybrid_dem} is used for the SSD estimation \citep{Majumdar2019a}. The modelling details are described only for the January 8, 2016 data. The other quad-pol datasets were analysed after successive iterations keeping most of the hyperparameter values same. 
+In this study, the modified (also improved) hybrid DEM differencing and coherence amplitude based Pol-InSAR volumetric height inversion model as given by Eq. \eqref{seq:hybrid_dem} is used for the SSD estimation \citep{Majumdar2019a}. The sensitivity analyses for these parameters are discussed in section \ref{ssec:sar}. Accordingly, the parameter values which are specified in this section represent those for the best fit model. 
 
-Firstly, the volume scattering dominant channels, HV and VH, are averaged to fully utilise the quad-pol data \citep{Cloude2005}. Next, the Pol-InSAR interferogram, $I\left(\vv{w_v}\right)$ has been computed using Eq. \eqref{seq:ifg} wherein, the weight vector, $\vv{w_v}$ is obtained from Table \ref{table:1} for the HV polarisation. Thereafter, the complex volume coherence, $\widetilde{\gamma}\left(\vv{w_v}\right)$, is calculated from Eq. \eqref{seq:coh} with $L$ = 3. Similarly, the complex surface or ground coherence, $\widetilde{\gamma}\left(\vv{w_s}\right)$, is computed by choosing $\vv{w_s}$ as the HH-VV weight vector (Table \ref{table:1}). Moreover, the actual vertical wavenumber, $k_z$, when varied with the LIA, is in the order of 0.1 rad/m with the ambiguity height, $h_{2\pi} = 2\pi/k_z \approx$ 63.18 m, $\lambda_0 \approx$ 3.11 cm and $m$ = 1 (single-pass acquisition). Since the maximum height of the distributed volume scatterer (in this case, standing snow), $\Delta{Z_{s,max}}$, should be similar to $h_{2\pi}$ \citep{Kugler2015, Hajnsek2009, Kumar2017}, $k_z$ has to be rescaled to an optimum range for effectively estimating the SSD. Hence, the modified vertical wavenumber, $k_z^\prime$ , is given by Eq. \eqref{seq:vn} where $\eta^\prime$ is a free scaling parameter which has to be set according to the known $\Delta{Z_{s,max}}$ in the study area. Here, $h_{2\pi}^\prime$ is the scaled height of ambiguity which like that of $h_{2\pi}$ determines the height changes in modulo $2\pi$ \citep{Hanssen2001}. Also, $\mathbb{R}_{>0}^+$ denotes the set of all positive real numbers in the interval $(0, \infty)$. In this work, due to the limited ground-truth data availability and the subsequent ensemble averaging operation (window size of 21$\times$21) on $k_z^\prime$ , $\Delta{Z_{s,max}} = $ 12 m has been assumed for which $\eta^\prime = $ 5 is used. It should be noted that the selection of these parameter values have been carried out after appropriate sensitivity analysis which is discussed in section \ref{ssec:sar}.
+Firstly, the volume scattering dominant channels, HV and VH, are averaged to fully utilise the quad-pol data \citep{Cloude2005}. Next, the Pol-InSAR interferogram, $I\left(\vv{w_v}\right)$ has been computed using Eq. \eqref{seq:ifg} wherein, the weight vector, $\vv{w_v}$ is obtained from Table \ref{table:1} for the HV polarisation. Thereafter, the complex volume coherence, $\widetilde{\gamma}\left(\vv{w_v}\right)$, is calculated from Eq. \eqref{seq:coh} with $L$ = 5. Similarly, the complex surface or ground coherence, $\widetilde{\gamma}\left(\vv{w_s}\right)$, is computed by choosing $\vv{w_s}$ as the HH-VV weight vector (Table \ref{table:1}). Moreover, the actual vertical wavenumber, $k_z$, when varied with the LIA, is quite small ($<$ 0.3 rad/m) with the ambiguity height, $h_{2\pi} = 2\pi/k_z >$ 17 m, $\lambda_0 \approx$ 3.11 cm and $m$ = 1 (single-pass acquisition). Since the maximum height of the distributed volume scatterer (in this case, standing snow), $\Delta{Z_{s,max}}$, should be similar to $h_{2\pi}$ \citep{Kugler2015, Hajnsek2009, Kumar2017}, $k_z$ has to be rescaled to an optimum range for effectively estimating the SSD. Hence, the modified vertical wavenumber, $k_z^\prime$ , is given by Eq. \eqref{seq:vn} where $\eta^\prime$ is a free scaling parameter which has to be set according to the known $\Delta{Z_{s,max}}$ in the study area. Here, $h_{2\pi}^\prime$ is the scaled height of ambiguity which like that of $h_{2\pi}$ determines the height changes in modulo $2\pi$ \citep{Hanssen2001}. Also, $\mathbb{R}_{>0}^+$ denotes the set of all positive real numbers in the interval $(0, \infty)$. In this work, due to the limited ground-truth data availability and the subsequent ensemble averaging operation (window size of 5$\times$5) on $k_z^\prime$, $\eta^\prime$ is optimised based on the Mean Absolute Error (MAE) of the SSD estimates. 
 
-Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and the parameter $m$ is set to 1 for bistatic acquisition and 2 in the monostatic case. Also in Eq. \eqref{seq:vn}, $\Delta\theta$ is the change in the incidence angle occuring due to the spatial baseline, $\theta_l$ is the LIA, and $\lambda_0$ is the radar wavelength \citep{Cloude2010, Kugler2015}.
+Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and the parameter $m$ is set to 1 for bistatic acquisition and 2 in the monostatic case. Also in Eq. \eqref{seq:vn} and \eqref{seq:eff}, $\Delta\theta$ is the change in the incidence angle occuring due to the spatial baseline, $\theta_l$ is the LIA, $\lambda_0$ is the radar wavelength \citep{Cloude2010, Kugler2015}, $\epsilon_s$ is the real part of the dielectric permittivity of the snow volume wherein $\rho_s$ is the standing snow density\citep{Sharma2007, Leinss2015}.
 
 \begin{subequations}
     \centering
@@ -230,11 +235,15 @@ Apart from this, the function $\arg$ is defined in the interval $[0, 2\pi)$ and 
     \begin{flushleft}\text{where,}\end{flushleft}
     \begin{equation}
         \label{seq:vn}
-        k_z^\prime = \left\langle\eta^\prime\frac{m\Delta\theta}{\lambda_0\sin\theta_l}\right\rangle, \eta^\prime\in\mathbb{R}_{>0}^+\mid\Delta{Z_{s, max}} \approx h_{2\pi}^\prime = 2\pi/k_z^\prime
+        k_z^\prime = \left\langle\eta^\prime\frac{m\Delta\theta\sqrt{\epsilon_s}}{\lambda_0\sin\theta_l}\right\rangle, \eta^\prime\in\mathbb{R}_{>0}^+\mid\Delta{Z_{s, max}} \approx h_{2\pi}^\prime = 2\pi/k_z^\prime
+    \end{equation}
+    \begin{equation}
+        \label{seq:eff}
+        \epsilon_s = 1 + 1.5995\rho_s + 1.8610\rho_s^3
     \end{equation}
 \end{subequations}
 
-Subsequently, the volume and surface coherences are then used to estimate the wrapped ground phase, $\phi_{topo}^w \in [0, 2\pi)$, from Eq. \eqref{eq:topo}. Additionally, a median ensemble filter of 21$\times$21 is applied on the obtained $\phi_{topo}^w$ following the processing steps provided by \cite{Cloude2005}.
+Subsequently, the volume and surface coherences are then used to estimate the wrapped ground phase, $\phi_{topo}^w \in [0, 2\pi)$, from Eq. \eqref{eq:topo}. Additionally, a median ensemble filter of 5$\times$5 is applied on the obtained $\phi_{topo}^w$ following the processing steps provided by \cite{Cloude2005}.
 
 \begin{equation}
     \label{eq:topo}
@@ -248,7 +257,7 @@ where,
     & C = \left\lvert\widetilde{\gamma}\left(\vv{w_v}\right) - \widetilde{\gamma}\left(\vv{w_s}\right)\right\rvert^2
 \end{align*}
 
-Eventually, the SSD ($\Delta{Z_s}$) and SSWE ($=\rho_s\Delta{Z_s}$) are estimated wherein the standing snow density ($\rho_s = $ 0.315 g/cm\textsuperscript{3}) measured by the Dhundi SPA at 00:52 hrs UTC on January 8, 2016, has been used (Table \ref{table:ssd_data}). Here, $\eta = $ 0.65, the volume coherence threshold, $\tau_v = $ 0.6 (pixels having $\tau_v < $ 0.6 are neglected $\forall\tau_v \in$ [0, 1]), and the SSD values are averaged based on a 57$\times$57 ensemble filter window. The entire Pol-InSAR workflow is summarised in Figure \ref{fig:ssd_method} which shows the main processing blocks.
+Eventually, the SSD ($\Delta{Z_s}$) and SSWE ($=\rho_s\Delta{Z_s}$) are estimated using the standing snow densities given in Table \ref{table:ssd_data}. Here, $\eta = $ 0.6 is kept fixed and the SSD values are averaged based on a 5$\times$5 ensemble filter window. The entire Pol-InSAR workflow is summarised in Figure \ref{fig:ssd_method} which shows the main processing blocks.
 
 \begin{figure}[htb]
     \centering
@@ -276,7 +285,7 @@ However, in order to compute the inverse $\sinc_\pi$ (normalised $\sinc$) functi
 \subsubsection{Validation Process}
 \label{sssec:val}
 
-One of the significant challenges in this work is the limited ground-truth data availability. Since, in-situ data from only two ground stations are available, the conventional way of accuracy assessment through regression plots \citep{Kugler2015, Leinss2014, Kumar2017} is infeasible in this context. Moreover, the Kothi AWS (Fig \ref{fig:overview}) area falls in the layover region for the descending pass acquisitions and hence, only the Dhundi region which is free from layover, shadow and foreshortening effects, is used for validation. In this case, a neighbourhood window of size 3$\times$3 ($\approx$ 81 m\textsuperscript{2} ground area) surrounding the Dhundi SPA is selected for validating the SSD and SSWE estimates by considering only the statistical mean and standard deviation.
+One of the significant challenges in this work is the limited ground-truth data availability. Since, in-situ data from only two ground stations are available, the conventional way of accuracy assessment through regression plots \citep{Kugler2015, Leinss2014, Kumar2017} is infeasible in this context. Moreover, the Kothi AWS (Fig \ref{fig:overview}) area falls in the layover region for the descending pass acquisitions and hence, only the Dhundi region which is free from layover, shadow and foreshortening effects, is used for validation. In this case, a neighbourhood window of size 5$\times$5 ($\approx$ 225 m\textsuperscript{2} ground area) surrounding the Dhundi SPA is selected for validating the SSD and SSWE estimates by considering only the statistical mean and standard deviation.
 
 \subsubsection{Uncertainty Assessment}
 \label{sssec:ua}
@@ -286,7 +295,7 @@ Due to the complex terrain characteristics there exist significant uncertainty s
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/Methods/HA.png}
-    \caption{$H/{\alpha}$ plane showing different scattering zones. Z1: Dihedral, Z2: Dipole, Z3: Bragg Surface, Z4: Double
+    \caption{\doublespacing $H/{\alpha}$ plane showing different scattering zones. Z1: Dihedral, Z2: Dipole, Z3: Bragg Surface, Z4: Double
 bounce, Z5: Anisotropic, Z6: Random surface, Z7: Complex structures, Z8: Random anisotropic, Z9: Non-feasible.}
     \label{fig:ha}
 \end{figure}
@@ -324,7 +333,7 @@ The Beas river watershed near Manali, India is part of the north-western Himalay
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/Overview.png}
-    \caption{Overview map of the study area showing the ALOS PALSAR DEM. The original DEM of 12.5 m spatial resolution (generated in 2011) has been resampled to 3 m using bilinear interpolation \citep{Wu2008} to match the high resolution SAR data. Moreover, the vertical resolution as per the product specification is 5 m.}
+    \caption{\doublespacing Overview map of the study area showing the ALOS PALSAR DEM. The original DEM of 12.5 m spatial resolution (generated in 2011) has been resampled to 3 m using bilinear interpolation \citep{Wu2008} to match the high resolution SAR data. Moreover, the vertical resolution as per the product specification is 5 m.}
     \label{fig:overview}
 \end{figure}
 
@@ -371,13 +380,13 @@ Intensive fieldwork had been conducted from October 14-21, 2018 in the Dhundi an
         \caption{Weather instruments}
         \label{subfig:stations}
     \end{subfigure}
-    \caption{Dhundi field photographs showing the varying topographic features present in the surrounding area.}
+    \caption{Dhundi field photographs showing varying topographic features.}
     \label{fig:field}
 \end{figure}
 
 \begin{table}[!htbp]
 \centering
-\caption{Bistatic TerraSAR-X/TanDEM-X dataset metadata. The date and time are shown in DD/MM/YYYY and UTC hrs formats respectively.}
+\caption{\doublespacing Bistatic TerraSAR-X/TanDEM-X dataset metadata. The date and time are shown in DD/MM/YYYY and UTC hrs formats respectively.}
 \label{table:data}
 \begin{tabular}{c c c c c c}
 \hline
@@ -399,13 +408,13 @@ Intensive fieldwork had been conducted from October 14-21, 2018 in the Dhundi an
 
 \subsection{Datasets Used}
 \label{ssec:data}
-Overall twelve Coregistered Single look Slant range Complex (CoSSC) TerraSAR-X (TSX)/TanDEM-X (TDX) bistatic X-band SAR images acquired between December 2015 and August 2017 in stripmap (SM) mode are available over this study area \citep{Balss2012}. The datasets are summarised in Table \ref{table:data}. In total, there are six Quad-pol data pairs wherein the ascending and descending orbital pass acquisitions are at 12:46 hrs and 00:53 hrs Universal Time Coordinated (UTC) respectively. Moreover, the perpendicular baseline ($B_\bot$) and ambiguity height ($h_{2\pi}$) for these datasets are also provided in \ref{table:data}. 
+Overall twelve Coregistered Single look Slant range Complex (CoSSC) TerraSAR-X (TSX)/TanDEM-X (TDX) bistatic X-band SAR images acquired between December 2015 and August 2017 in stripmap (SM) mode are available over this study area \citep{Balss2012}. The datasets are summarised in Table \ref{table:data}. In total, there are six Quad-pol data pairs wherein the ascending and descending orbital pass acquisitions are at 12:46 hrs and 00:53 hrs Universal Time Coordinated (UTC) respectively. Moreover, the perpendicular baseline ($B_\bot$) and ambiguity height ($h_{2\pi}$) for these datasets are also provided in Table \ref{table:data}. 
 
 Additionally, the high frequency data (two-minute interval measurements) obtained from the snowpack analyser (SPA) device (installed at Dhundi) had been downloaded and were added to the database as a separate table. Accordingly, the in-situ SSDs and snow densities at 06:22 hrs (00:52 hrs UTC) and 18:16 hrs (12:46 hrs UTC) Indian Standard Time (IST) for the descending and ascending pass acquisitions respectively have been considered. The in-situ SSDs along with the corresponding snow densities and SSWEs are provided in Table \ref{table:ssd_data}. Apart from this, a forest mask used in previous studies involving this watershed area \citep{Thakur2012, Thakur2017} has been obtained from the Water Resources Department (WRD), Indian Institute of Remote Sensing (IIRS).
 
 \begin{table}[htb]
 \centering
-\caption{In-situ SSD, snow density, and SSWE measured by the SPA instrument at the Dhundi site. The date and time are in DD/MM/YYYY and UTC hrs respectively.}
+\caption{\doublespacing In-situ SSD, snow density, and SSWE measured by the SPA instrument at the Dhundi site. The date and time are in DD/MM/YYYY and UTC hrs respectively.}
 \label{table:ssd_data}
 \begin{tabular}{c c c c c}
 \hline
@@ -419,7 +428,7 @@ Additionally, the high frequency data (two-minute interval measurements) obtaine
 \end{tabular}
 \end{table}
 
-The Sentinel Application Platform (SNAP) 7.0.0 \citep{ESA2019} has been used for basic SAR processing. In addition, the FSD and SSD inversion models have been implemented using Python 3 wherein PyCharm Community Edition 2019.3.1 \citep{JetBrains2019} was used as the coding environment. Moreover, the final snow depth maps have been prepared using QGIS 3.10 \citep{QGISDevelopmentTeam2019}. Furthermore, some of the computationally intensive tasks have been carried out using the High-Performance Computing (HPC) infrastructure installed at IIRS.
+The Sentinel Application Platform (SNAP) 7.0.0 \citep{ESA2019} has been used for basic SAR processing. In addition, the SSD inversion model has been implemented using Python 3 wherein PyCharm Community Edition 2019.3.1 \citep{JetBrains2019} was used as the coding environment. Moreover, the final snow depth maps have been prepared using QGIS 3.10 \citep{QGISDevelopmentTeam2019}. Furthermore, some of the computationally intensive tasks have been carried out using the High-Performance Computing (HPC) infrastructure installed at IIRS.
 \FloatBarrier
 \section{Results and Discussion}
 \label{sec:res}
@@ -428,7 +437,7 @@ The Sentinel Application Platform (SNAP) 7.0.0 \citep{ESA2019} has been used for
 
 The winter (January 8, 2016) and summer-time (June 8, 2017) dual-pol $H/{\alpha}$ decomposition (Figure \ref{fig:ha_res}) and unsupervised Wishart classification (Figure \ref{fig:wishart_res}) results combined with the derived class percentage statistics (Figure \ref{fig:percent}) show that, in the presence of snow, the high entropy anisotropic volume scattering (Z8) increases by 5.11\% whereas the medium entropy volume scattering (Z5) decreases by 7.01\% for the entire study area. This reduction in the Z5 volume scattering could be attributed to the partially snow covered forests and shrubs which exhibit higher volume scattering at X-band during the snow-free season (Figure \ref{subfig:mountain}). The corresponding dual-pol Wishart classified maps are displayed along with the zoomed views in Figure \ref{subfig:wishart_jan} and Figure \ref{subfig:wishart_jun} respectively.
 
-Moreover, the Bragg surface scattering (Z3) is slightly higher in summer (10.88\%) as compared to the winter (10.38\%). One plausible reason for this is the 20 mm rainfall which occurred on June 7, 2017, evening (data retrieved from the Dhundi record book). Also, the occurrence of fresh snowfall in areas which did not have prior standing or old snow could result in surface scattering from the ground \citep{Leinss2014}. Apart from this, the asbestos gable roofs used in the human settlements (Figure \ref{subfig:base} and Figure \ref{subfig:landscape}) are strong single-bounce surface scatterers \citep{Brunner2009}. 
+Moreover, the Bragg surface scattering (Z3) is slightly higher in summer (10.88\%) as compared to the winter (10.38\%). One plausible reason for this is the 20 mm rainfall which occurred on June 7, 2017, evening (data retrieved from the Dhundi record book). Also, the occurrence of fresh snowfall in areas which did not have prior standing or old snow would result in surface scattering from the ground (instead of volume scattering if standing snow was present)\citep{Leinss2014}. Apart from this, the asbestos gable roofs used in the human settlements (Figure \ref{subfig:base} and Figure \ref{subfig:landscape}) are strong single-bounce surface scatterers \citep{Brunner2009}. 
 
 \begin{figure}[!ht]
     \centering
@@ -443,7 +452,7 @@ Moreover, the Bragg surface scattering (Z3) is slightly higher in summer (10.88\
         \caption{}
         \label{subfig:wishart_jun}
     \end{subfigure}
-    \caption{Zoomed views over Dhundi of the Wishart classified maps for the \subref{subfig:wishart_jan} January 8, 2016, and \subref{subfig:wishart_jun} June 8, 2017 data. In these maps, only the layover and shadow mask has been applied. Also, the Kothi area is excluded from the analysis since it lies in the layover region.}
+    \caption{\doublespacing Zoomed views over Dhundi of the Wishart classified maps for the \subref{subfig:wishart_jan} January 8, 2016, and \subref{subfig:wishart_jun} June 8, 2017 data. In these maps, only the layover and shadow mask has been applied. Also, the Kothi area is excluded from the analysis since it lies in the layover region.}
     \label{fig:wishart_res}
 \end{figure}
 
@@ -453,8 +462,8 @@ Furthermore, the human settlements result in double-bounce scattering (Z4) \cite
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Results/Percent.png}
-    \caption{Scattering class percentages (rounded to 2 decimal places) from the unsupervised Wishart classification. The different zone labels are described in Figure \ref{fig:ha}.}
+    \includegraphics[width=0.8\textwidth]{Figures/Results/Percent.png}
+    \caption{\doublespacing Scattering class percentages (rounded to 2 decimal places) from the unsupervised Wishart classification. The different zone labels are described in Figure \ref{fig:ha}.}
     \label{fig:percent}
 \end{figure}
 
@@ -479,14 +488,14 @@ Another interesting aspect in this context is the increase (from 9.93\% to 19.8\
         \caption{}
         \label{subfig:ha_jan_quad}
     \end{subfigure}
-    \caption{Dual-pol $H/{\alpha}$ plane plots for the \subref{subfig:ha_jan} January 8, 2016, and \subref{subfig:ha_jun} June 8, 2017 data, \subref{subfig:ha_jan_quad} Quad-pol $H/{\alpha}$ plane plot for the January 8, 2016 data. The colours red, green, blue, and black indicate the point density with red being the highest, and black as the lowest. These plots have been made using SNAP \citep{ESA2019}.}
+    \caption{\doublespacing Dual-pol $H/{\alpha}$ plane plots for the \subref{subfig:ha_jan} January 8, 2016, and \subref{subfig:ha_jun} June 8, 2017 data, \subref{subfig:ha_jan_quad} Quad-pol $H/{\alpha}$ plane plot for the January 8, 2016 data. The colours red, green, blue, and black indicate the point density with red being the highest, and black as the lowest. These plots have been made using SNAP \citep{ESA2019}.}
     \label{fig:ha_res}
 \end{figure}
 
-Thus, from this discussion, it is clearly observed that the presence of snow causes a substantial change of the scattering patterns in the study area resulting in significant uncertainty sources. In turn, the optimisation of the model parameters along with the sensitivity analysis of the SSD values depend on these scattering types. As an example, if there is low surface scattering then the FSD inversion model leads to underestimated values \citep{Leinss2014} whereas for low volume scattering, the SSD results are generally underestimated \citep{Cloude2005, Hajnsek2009, Kugler2015}. Therefore, the uncertainty assessment by means of the scattering mechanism classification is one of the key aspects of this research.
+Thus, from this discussion, it is clearly observed that the presence of snow causes a substantial change of the scattering patterns in the study area resulting in significant uncertainty sources. In turn, the optimisation of the model parameters along with the sensitivity analysis of the SSD values depend on these scattering types. As an example, if there is low volume scattering, the SSD results are generally underestimated \citep{Cloude2005, Hajnsek2009, Kugler2015}. Therefore, the uncertainty assessment by means of the scattering mechanism classification is one of the key aspects of this research.
 \FloatBarrier
 \subsection{Changes in Surface Coherence}
-The summer (June 8, 2017) and winter (January 8, 2016) surface coherences are compared in Fig \ref{fig:coh_res} which indicate higher surface coherence values for the summer time image (Fig \ref{subfig:coh_jun}). These surface coherences are computed only from the VV channel using standard InSAR workflow in SNAP \citep{ESA2019}. The visual analysis suggests that the surface coherence is higher (implying higher surface scattering) during June 8, 2017 which is in concordance with the backscattering mechanisms discussed in the previous section (Fig \ref{fig:wishart_res}). Accordingly, the mean surface coherence (calculated using the 3$\times$3 window in Dhundi) is reduced from $\sim0.83$ to $\sim0.78$ during the winter time (Fig \ref{subfig:coh_jan}) due to the presence of standing snow. However, this reduction is small owing to the occurrence of fresh snowfall on January 8, 2016 which results in surface scattering at X-band \citep{Leinss2014}. 
+The summer (June 8, 2017) and winter (January 8, 2016) surface coherences are compared in Fig \ref{fig:coh_res} which indicate higher surface coherence values for the summer time image (Fig \ref{subfig:coh_jun}). These surface coherences are computed only from the VV channel using standard InSAR workflow in SNAP \citep{ESA2019}. The visual analysis suggests that the surface coherence is higher (implying higher surface scattering) during June 8, 2017 which is in concordance with the backscattering mechanisms discussed in the previous section (Fig \ref{fig:wishart_res}). Accordingly, the mean surface coherence (calculated using the same 5$\times$5 window) is reduced from $\sim0.62$ to $\sim0.60$ during the winter time (Fig \ref{subfig:coh_jan}) due to the presence of standing snow. However, this reduction is small owing to the surface scatterers (e.g., gable roofs, Fig \ref{subfig:base}) such as the ones present near the Dhundi base station. 
 
 \begin{figure}[!ht]
     \centering
@@ -501,13 +510,13 @@ The summer (June 8, 2017) and winter (January 8, 2016) surface coherences are co
         \caption{}
         \label{subfig:coh_jun}
     \end{subfigure}
-    \caption{Zoomed views over Dhundi of the surface coherence maps for the \subref{subfig:coh_jan} January 8, 2016, and \subref{subfig:coh_jun} June 8, 2017 data.}
+    \caption{\doublespacing Zoomed views over Dhundi of the surface coherence maps for the \subref{subfig:coh_jan} January 8, 2016, and \subref{subfig:coh_jun} June 8, 2017 data.}
     \label{fig:coh_res}
 \end{figure}
 \FloatBarrier
 \subsection{Sensitivity Analysis Results}
 \label{ssec:sar}
-In order to perform the sensitivity analysis, only the Dhundi area is chosen and the January 8, 2016 acquisition is used for this purpose. Accordingly, the other datasets have been tested for the overall accuracy assessment based on the optimised parameters for the January 8, 2016 data.
+In order to perform the sensitivity analysis, only the Dhundi area is chosen for validation. Accordingly, the MAE calculated from all the SSD estimates is used for optimising the model parameters.
 
 The SSD inversion model as described from the implementation or methodological perspective in section \ref{ssec:ssd} incorporates several user-defined free parameters. Thus, it is necessary to conduct an appropriate sensitivity analysis for the hybrid Pol-InSAR based volumetric height (SSD) retrieval algorithm. Accordingly, the various model parameters and their optimisation are discussed below.
 
@@ -515,34 +524,49 @@ The SSD inversion model as described from the implementation or methodological p
 
 The ensemble windows corresponding to the number of looks (L) in Eq. \eqref{seq:coh} must be suitably chosen so as to maximise both the volume coherence amplitude, $\gamma\left(\vv{w_v}\right)$, and the surface coherence amplitude, $\gamma\left(\vv{w_s}\right)$. As a result, the sensitivity analysis for these window sizes is an important aspect of this work.
 
-The effects of $L$ on the mean volume coherence amplitude, $\mu_{\gamma\left(\vv{w_v}\right)}$ and the mean surface coherence amplitude, $\mu_{\gamma\left(\vv{w_s}\right)}$ which are measured by applying the same 3$\times$3 neighbourhood window over Dhundi (section \ref{ssec:ssd}) along with the respective standard deviations, $\sigma_{\gamma\left(\vv{w_v}\right)}$ and $\sigma_{\gamma\left(\vv{w_v}\right)}$, are displayed in Figure \ref{fig:ssd_coh}. 
+The effects of $L$ on the mean volume coherence amplitude, $\mu_{\gamma\left(\vv{w_v}\right)}$ and the mean surface coherence amplitude, $\mu_{\gamma\left(\vv{w_s}\right)}$ which are measured by applying the same 5$\times$5 neighbourhood window over Dhundi (section \ref{ssec:ssd}) along with the respective standard deviations, $\sigma_{\gamma\left(\vv{w_v}\right)}$ and $\sigma_{\gamma\left(\vv{w_v}\right)}$, are displayed in Figure \ref{fig:ssd_coh}. 
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/Results/Coh_SSD.png}
-    \caption{Effect of the number of looks ($L$) on the volume and surface coherence. All the values are rounded to 2
-decimal places.}
+    \caption{\doublespacing Effect of the number of looks ($L$) on the volume and surface coherence for January 8, 2016. All the values are rounded to 2 decimal places. Similar statistics were obtained for other datasets.}
     \label{fig:ssd_coh}
 \end{figure}
 
-It can be seen that for the executed test cases, with increasing $L$, there is a general decreasing trend for both these coherences. So, for the SSD estimation, $L =$ 3 is chosen even though \cite{Cloude2005} suggests the usage of higher values of $L$. This is because, $\sigma_{\gamma\left(\vv{w_v}\right)} \approx$ 0.1 and $\sigma_{\gamma\left(\vv{w_s}\right)} \approx$ 0.18 are sufficiently small with adequately high $\mu_{\gamma\left(\vv{w_v}\right)} \approx$ 0.67 and $\mu_{\gamma\left(\vv{w_s}\right)} \approx$ 0.68. Also, since there is only one validation point for the entire study area, $L =$ 3 is justifiable.
+It can be seen that for the executed test cases, with increasing $L$, there is a general decreasing trend for both these coherences. So, for the SSD estimation, $L =$ 5 is chosen which is unbiased since L $>$ 3 \citep{Cloude2010}. This is because, $\sigma_{\gamma\left(\vv{w_v}\right)} \approx$ 0.14 and $\sigma_{\gamma\left(\vv{w_s}\right)} \approx$ 0.08 are sufficiently small with adequately high $\mu_{\gamma\left(\vv{w_v}\right)} \approx$ 0.43 and $\mu_{\gamma\left(\vv{w_s}\right)} \approx$ 0.51. 
 
-However, there exist several free parameters in this Pol-InSAR based SSD inversion model (section \ref{ssec:ssd}) and hence, the volume and surface coherence ensemble windows need to be kept constant ($L =$ 3) for the subsequent sensitivity analyses of the other parameters.
+However, there exist several free parameters in this Pol-InSAR based SSD inversion model (section \ref{ssec:ssd}) and hence, the volume and surface coherence ensemble windows need to be kept constant ($L =$ 5) for the subsequent sensitivity analyses of the other parameters.
 
 \subsubsection{Scaling Parameters}
 \label{sssec:scale}
-It has been previously discussed in section \ref{ssec:ssd} that there are two scaling parameters involved in the SSD estimation process. These are the vertical wavenumber scaling parameter ($\eta^\prime\in\mathbb{R}_{>0}^+$) and the scaling factor ($\eta\in$ [0, 1]) of the hybrid DEM differencing approach developed by \cite{Cloude2010}. More specifically, $\eta^\prime =$ 5 was found suitable for each descending pass acquisitions (Table \ref{table:data}). However, for the December 29, 2015 acquisition, $\eta^\prime =$ 40 because $k_z \approx$ 0.01 rad/m for this dataset was very low as compared to the other datasets ($k_z \approx$ 0.1 rad/m). Similarly, for the January 9, 2016 and January 20, 2016 datasets, $\eta^\prime =$ 3 and $\eta^\prime =$ 4 respectively were found to produce accurate results. Also, the volume coherence threshold, $\tau_v = $ 0.6, $L =$ 3, ground phase median ensemble filter window (21$\times$21), vertical wavenumber ensemble average window (21$\times$21), and the SSD ensemble average window of size 57$\times$57 are unchanged during this sensitivity analysis. So, only $\eta$ is optimised considering the January 8, 2016 data as before.
+It has been previously discussed in section \ref{ssec:ssd} that there are two scaling parameters involved in the SSD estimation process. These are the vertical wavenumber scaling parameter ($\eta^\prime\in\mathbb{R}_{>0}^+$) and the scaling factor ($\eta\in$ [0, 1]) of the hybrid DEM differencing approach developed by \cite{Cloude2010}. More specifically, the optimised $\eta^\prime$ values for each acquisition are described in Table \ref{table:eta_sf}. We see that these optimised values do not significantly vary for each acquisition type, i.e., $\eta^\prime \in$ \{6, 8, 9\} and $\eta^\prime \in$ \{16, 19\} for ascending and descending pass acquisitions respectively (Table \ref{table:data}). However, for the December 29, 2015 acquisition, $k_z$ was prescaled by 10 because the actual $k_z <$ 0.01 rad/m for this dataset was very low as compared to the other datasets wherein $k_z \in$ (0.1, 0.3) rad/m. Also, $L =$ 5, ground phase median ensemble filter window (5$\times$5), vertical wavenumber ensemble average window (5$\times$5), and the SSD ensemble average window of size 5$\times$5 are unchanged during this sensitivity analysis. So, only $\eta\prime$ is optimised considering the MAE of all the SSD estimates.
 
-The monotonically increasing SSD with respect to increasing $\eta$ are displayed in Figure \ref{fig:eta}. For $\eta =$ 0, the standard DEM differencing technique \citep{Cloude2005} results in the mean SSD, $\mu_s \approx$ 42.46 cm with the corresponding SSD standard deviation, $\sigma_s \approx$ 0.49 cm. As the SPA measured SSD at 00:52 hrs UTC, January 8, 2016, is 54.90 cm (Table \ref{table:ssd_data}), so $\mu_s$ is underestimated. Naturally, the mean SSWE, $\mu_{ss} \approx$ 133.76 mm (with SSWE standard deviation, $\sigma_{ss} \approx$ 1.53 mm) is also lower compared to the SPA measured SSWE of 173 mm. Thus, to effectively optimise the SSD, $\eta$ needs to be suitably increased \citep{Cloude2005, Cloude2010}.
+\begin{table}[!htbp]
+\centering
+\caption{Optimised vertical wavenumber scaling factors for each acquisition.}
+\label{table:eta_sf}
+\begin{tabular}{ccc}
+\hline
+\textbf{Date} & \textbf{Orbital Direction} & \boldmath$\eta\prime$ \\ \hline
+29/12/2015 & Ascending & 9   \\
+08/01/2016 & Descending & 19  \\
+09/01/2016 & Ascending & 6   \\
+19/01/2016 & Descending & 16  \\
+20/01/2016 & Ascending & 8   \\
+30/01/2016 & Descending & 19 \\ \hline
+\end{tabular}
+\end{table}
+
+Next, the monotonically increasing SSD with respect to increasing $\eta$ are displayed in Figure \ref{fig:eta} for the January 8, 2016 acquisition. Similar results are obtained for the other datasets also and hence, those are not discussed here. For $\eta =$ 0, the standard DEM differencing technique \citep{Cloude2005} results in the mean SSD, $\mu_s \approx$ 43.08 cm with the corresponding SSD standard deviation, $\sigma_s \approx$ 7.40 cm. As the SPA measured SSD at 00:52 hrs UTC, January 8, 2016, is 54.90 cm (Table \ref{table:ssd_data}), so $\mu_s$ is underestimated. Naturally, the mean SSWE, $\mu_{ss} \approx$ 135.69 mm (with SSWE standard deviation, $\sigma_{ss} \approx$ 23.30 mm) is also lower compared to the SPA measured SSWE of 173 mm. Thus, to effectively optimise the SSD, $\eta$ needs to be suitably increased \citep{Cloude2005, Cloude2010}.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Results/Eta.png}
-    \caption{Increasing mean SSD with respect to the scaling parameter $\eta$.}
+    \includegraphics[width=0.8\textwidth]{Figures/Results/Eta.png}
+    \caption{\doublespacing Increasing mean SSD ($\mu_s$) for January 8, 2016 with respect to the scaling parameter $\eta$. $\eta =$ 0.6 is chosen as the optimal value for all the datasets.}
     \label{fig:eta}
 \end{figure}
 
-In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 49.64 cm ($\sigma_s \approx$ 0.54 cm) is obtained with $\sim$90.42\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.65, the best SSD and SSWE accuracies of 99.53\% ($\mu_s \approx$ 54.64 cm) and 99.48\% ($\mu_{ss} \approx$ 172.10 mm) respectively are achieved over Dhundi (for January 8, 2016) with low standard deviations ($\sigma_s \approx$ 0.58 cm, $\sigma_{ss} \approx$ 1.82 mm) accounting for high reliability. Intriguingly, this model performs sufficiently well for all the six datasets wherein only $\eta^\prime$ needed to be varied for the ascending pass datasets only (section \ref{ssec:snow}). Therefore, these results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
+In this context, \cite{Cloude2005} has suggested setting $\eta = $ 0.4 for which the accuracy of the estimated tree height is found to be more than 90\%. Although by keeping $\eta = $ 0.4, $\mu_s \approx$ 50.09 cm ($\sigma_s \approx$ 9.31 cm) is obtained with $\sim$91.23\% accuracy, the complexity of the snow microstructure, anisotropy, and length scales necessitates the need for achieving even higher accuracies \citep{Leinss2016}. Moreover, in the presence of significantly varying hydrometeorological conditions which include high surface roughness and associated uncertainty sources (section \ref{ssec:scat}), the volume and surface coherence amplitudes generally do not reach expected values of higher than 0.8 \citep{Cloude2005, Kugler2015}. Therefore, with $\eta = $ 0.6, the best SSD and SSWE accuracies of 98.43\% ($\mu_s \approx$ 54.04 cm) and 98.39\% ($\mu_{ss} \approx$ 170.22 mm) respectively are achieved over Dhundi (for January 8, 2016) with moderately low standard deviations ($\sigma_s \approx$ 10.61 cm, $\sigma_{ss} \approx$ 33.41 mm) accounting for good reliability. Therefore, these results highlight the significance of this scaling parameter $\eta$ towards controlling the snow structural height variations \citep{Cloude2005, Cloude2010} and hence, the robustness of the hybrid DEM differencing model (section \ref{ssec:ssd}) is verified.
 
 \subsubsection[Computing SINC Inverse]{Computing $\sinc$ Inverse}
 \label{sssec:sinc}
@@ -550,7 +574,7 @@ In order to test the accuracy of the $\sinc_\pi$ inverse function, sample test d
 
 \begin{table}[ht]
 \centering
-\caption{Comparison between the normalised \cite{Cloude2010} sinc inverse and the secant sinc inverse methods.}
+\caption{\doublespacing Comparison between the normalised \cite{Cloude2010} sinc inverse and the secant sinc inverse methods.}
 \label{table:2}
 \begin{tabular}{c c c c}
 \hline
@@ -574,7 +598,7 @@ involved (RMSE $\approx$ 0.02 rad). Similarly, the $\sinc$ function is tested (T
 
 \begin{table}[ht]
 \centering
-\caption{Comparison between the traditional \cite{Cloude2010} sinc inverse and the secant sinc inverse methods.}
+\caption{\doublespacing Comparison between the traditional \cite{Cloude2010} sinc inverse and the secant sinc inverse methods.}
 \label{table:3}
 \begin{tabular}{c c c c}
 \hline
@@ -596,39 +620,38 @@ Therefore, by performing the sensitivity analysis of the $\sinc_{\pi_C}^{-1}$, $
 
 \subsubsection{SSD Ensemble Window}
 
-Another essential free parameter used in the Pol-InSAR based SSD estimation model (section \ref{ssec:ssd}) is the SSD ensemble averaging window size. By keeping $\eta = $ 0.65, $\eta^\prime = $ 5, and other ensemble window sizes constant, the sensitivity analysis has been carried out to observe the SSD variations which are shown in Figure \ref{fig:swindow}. 
+Another essential free parameter used in the Pol-InSAR based SSD estimation model (section \ref{ssec:ssd}) is the SSD ensemble averaging window size. By keeping $\eta = $ 0.6, $\eta^\prime$ values as in Table \ref{table:eta_sf}, and other ensemble window sizes constant (5$\times$5), the sensitivity analysis has been carried out to observe the SSD variations which are shown in Figure \ref{fig:swindow} for the January 8, 2016 dataset. 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Results/SSD_Res.png}
-    \caption{Effect of the ensemble window size on the SSD values.}
+    \includegraphics[width=\textwidth]{Figures/Results/SSD_Window.png}
+    \caption{Effect of the ensemble window size on the SSD values for January 8, 2016.}
     \label{fig:swindow}
 \end{figure}
 
-The graphical representation in Figure \ref{fig:swindow} shows that when the window size is increased beyond 57$\times$57, the SSD values increase sharply whereas, between the windows 53$\times$53 and 57$\times$57, the values are mostly similar. This could be attributed by the fact that, in mountainous terrains, elevation, and not distance, plays a critical role in controlling the snow accumulation \citep{Liu2017, Singh2014, Singh2017, Thakur2012}. The varying topographical conditions prominently visible in Figure \ref{fig:field} also ascertain that for larger window sizes, the snow depth variability could increase if a nearby mountain also lies within the neighbourhood window. So, considering these aspects, the ensemble window size of 57$\times$57 is selected which results in $\mu_s \approx$ 54.64 cm with $\sigma_s \approx$ 0.58 cm as discussed in the scaling parameter sensitivity analysis.
+The graphical representation in Figure \ref{fig:swindow} shows that when the window size is increased beyond 9$\times$9, the SSD values decrease sharply whereas, between the windows 5$\times$5 and 9$\times$9, the values are consistent with the actual SSD measurement of 54.9 cm. This could be attributed to the fact that, in mountainous terrains, elevation, and not distance, plays a critical role in controlling the snow accumulation \citep{Liu2017, Singh2014, Singh2017, Thakur2012}. The varying topographical conditions prominently visible in Figure \ref{fig:field} also ascertain that for larger window sizes, the snow depth variability could increase if a nearby mountain also lies within the neighbourhood window or fluctuate due to changes in volume coherence. So, considering these aspects, the ensemble window size of 5$\times$5 is selected which results in $\mu_s \approx$ 54.04 cm with $\sigma_s \approx$ 10.61 cm as discussed in the scaling parameter sensitivity analysis. It is noteworthy that similar observations were made for the other datasets.
 
 \subsubsection{DEM and LIA Error Analysis}
 \label{sssec:error}
 
-During the field visit (section \ref{sssec:field}), several DGPS points which had been acquired are used to check the
-accuracy of the ALOS PALSAR DEM (Fig \ref{fig:overview}). In essence, the observed errors are then used to analyse the change in the LIA (Eq. \eqref{eq:sa}) induced by the corrected DEM (the erroneous DEM pixels are replaced by the respective DGPS measurements). 
+During the field visit (section \ref{sssec:field}), several DGPS points which had been acquired are used to check the accuracy of the ALOS PALSAR DEM (Fig \ref{fig:overview}). In essence, the observed errors are then used to analyse the change in the LIA (Eq. \eqref{eq:sa}) induced by the corrected DEM (the erroneous DEM pixels are replaced by the respective DGPS measurements). 
 
 The DEM errors calculated using the Dhundi and Kothi DGPS readings are displayed in Figure \ref{subfig:dem_error} and the subsequent LIA differences (computed from the corrected and original DEMs) for these points are shown in Figure \ref{subfig:lia_error}. As seen from these graphs, the absolute elevation errors range from 0.08 m to 16.30 m in the Dhundi region, whereas these vary from 0.19 m to 25.32 m in the Kothi area. Accordingly, the RMSE values for the elevation errors are approximately 6.71 m and 8.8 m respectively.
 
-\begin{figure}[!ht]
+\begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{\textwidth}
+    \begin{subfigure}[t]{0.9\textwidth}
         \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/DEM_Error.png}}
         \caption{}
         \label{subfig:dem_error}
     \end{subfigure}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%second row
-    \begin{subfigure}[t]{\textwidth}
+    \begin{subfigure}[t]{0.9\textwidth}
         \raisebox{-\height}{\includegraphics[width=\textwidth]{Figures/Results/LIA_Error.png}}
         \caption{}
         \label{subfig:lia_error}
     \end{subfigure}
-    \caption{\subref{subfig:dem_error} Absolute DEM errors obtained by comparing ALOS PALSAR DEM and the DGPS measurements and \subref{subfig:lia_error} observed absolute LIA errors. Here, DB is the Dhundi base station point, D1-D86 are acquired in the Dhundi region, and K1-K72 are measured in the Kothi area using the DGPS. All these values are rounded to 2 decimal places.}
+    \caption{\doublespacing\subref{subfig:dem_error} Absolute DEM errors obtained by comparing ALOS PALSAR DEM and the DGPS measurements and \subref{subfig:lia_error} observed absolute LIA errors. Here, DB is the Dhundi base station point, D1-D86 are acquired in the Dhundi region, and K1-K72 are measured in the Kothi area using the DGPS. All these values are rounded to 2 decimal places.}
     \label{fig:error}
 \end{figure}
 
@@ -644,26 +667,26 @@ In order to visually observe the spatial patterns, the SSD maps for all the data
 \afterpage{\FloatBarrier}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Results/SSD.png}
-    \caption{Zoomed view of the SSD map for January 8, 2016. The ground points surveyed (section \ref{sssec:field}) are shown wherein the closely spaced points have been acquired using the DGPS kinematic mode and fall on the nearby roads in the Dhundi region. The other points including the Dhundi base are measured using the static mode. Since the Kothi area falls in the layover and shadow zone, it is excluded from the zoomed view analysis.}
+    \includegraphics[width=\textwidth]{Figures/Results/SSD_Map.png}
+    \caption{\doublespacing Zoomed view of the SSD map for January 8, 2016. The ground points surveyed (section \ref{sssec:field}) are shown wherein the closely spaced points have been acquired using the DGPS kinematic mode and fall on the nearby roads in the Dhundi region. The other points including the Dhundi base are measured using the static mode. Since the Kothi area falls in the layover and shadow zone, it is excluded from the zoomed view analysis. The significant SSD variations can be well observed from the zoomed map which showcase the challenges involved in appropriately modelling snow depth using Pol-InSAR over complex terrains.}
     \label{fig:ssd_map}
 \end{figure}
 
-The complete analysis of all the datasets are provided in Table \ref{table:ssd_results} which shows that for the Dhundi site, the improved model displays sufficiently high overall SSD accuracy with coefficient of determination ($R^2$) $\approx$ 0.97, Mean Absolute Error (MAE) $\approx$ 1.56 cm, and Root Mean Square Error (RMSE) $\approx$ 1.89 cm. The corresponding SSWE estimates have $R^2 \approx$ 0.78, MAE $\approx$ 4.84 mm, and RMSE $\approx$ 6.01 mm. This reduction in the $R^2$ for the SSWEs indicate that even small errors present in the SSD estimates can greatly influence the estimated SSWEs. In Table \ref{table:ssd_results}, $\epsilon_s$ and $\epsilon_{ss}$ are the SSD and SSWE errors respectively with $\mu_s$, $\mu_{ss}$, $\sigma_s$, and $\sigma_{ss}$ having same meanings as in section \ref{sssec:scale}.
+The complete analysis of all the datasets are provided in Table \ref{table:ssd_results} which shows that for the Dhundi site, the improved model displays sufficiently high overall SSD accuracy with coefficient of determination ($R^2$) $\approx$ 0.96, MAE $\approx$ 1.61 cm, and Root Mean Square Error (RMSE) $\approx$ 2.16 cm. The corresponding SSWE estimates have $R^2 \approx$ 0.71, MAE $\approx$ 5.19 mm, and RMSE $\approx$ 6.84 mm. This reduction in the $R^2$ for the SSWEs indicate that even small errors present in the SSD estimates can greatly influence the estimated SSWEs. In Table \ref{table:ssd_results}, $\epsilon_s$ and $\epsilon_{ss}$ are the SSD and SSWE errors respectively with $\mu_s$, $\mu_{ss}$, $\sigma_s$, and $\sigma_{ss}$ having same meanings as in section \ref{sssec:scale}.
 
 \begin{table}[!ht]
 \centering
-\caption{Accuracy assessment of the SSD and SSWE estimates in the Dhundi region. Here, the negative and positive errors represent overestimation and underestimation respectively. The date is represented in DD/MM/YYYY format and all the values are rounded to 2 decimal places.}
+\caption{\doublespacing Accuracy assessment of the SSD and SSWE estimates in the Dhundi region. Here, the negative and positive errors represent overestimation and underestimation respectively. The date is represented in DD/MM/YYYY format and all the values are rounded to 2 decimal places.}
 \label{table:ssd_results}
 \begin{tabular}{c c c c c c c}
 \hline
 \textbf{Date}   & \boldmath{$\mu_s$} \textbf{(cm)} & \boldmath{$\sigma_s$} \textbf{(cm)} & \boldmath{$\epsilon_s$} \textbf{(cm)}    & \boldmath{$\mu_{ss}$} \textbf{(mm)} & \boldmath{$\sigma_{ss}$} \textbf{(mm)} & \boldmath{$\epsilon_{ss}$} \textbf{(mm)}  \\ \hline
-29/12/2015  & 38.05 & 0.64  & -1.35 & 145.34    & 2.44  & -5.15 \\ 
-08/01/2016  & 54.64 & 0.58  & 0.26  & 172.10    & 1.82  & 0.84  \\ 
-09/01/2016  & 53.55 & 0.30  & 2.45  & 162.81    & 0.92  & 7.43  \\ 
-19/01/2016  & 43.08 & 0.17  & -0.28 & 149.50    & 0.60  & -0.98 \\ 
-20/01/2016  & 39.57 & 0.36  & 3.23  & 133.74    & 1.20  & 10.92 \\
-30/01/2016  & 71.77 & 0.27  & -1.77 & 150.72    & 0.57  & -3.72 \\ \hline
+29/12/2015  & 36.36 & 12.19  & 0.34 & 138.91    & 46.58  & 1.29 \\ 
+08/01/2016  & 54.04 & 10.61  & 0.86  & 170.22    & 33.41  & 2.71  \\ 
+09/01/2016  & 51.81 & 14.76  & 4.19  & 157.49    & 44.88  & 12.75  \\ 
+19/01/2016  & 41.46 & 12.96  & 1.34 & 143.88    & 44.97  & 4.64 \\ 
+20/01/2016  & 40.04 & 11.69  & 2.76  & 135.33    & 39.52  & 9.34 \\
+30/01/2016  & 70.19 & 24.01  & -0.19 & 147.40    & 50.43  & -0.40 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -680,7 +703,7 @@ Due to the complex hydrometeorological and topographical conditions of the study
 
 Thus, the novelty of this research lies in suitably modifying and ultimately improving the hybrid Pol-InSAR model (section \ref{ssec:ssd}) to estimate the SSD which is new in the context of cryospheric studies. Although there was only a single spatial validation point (Dhundi), the SSD estimates show high accuracy when the temporal trends are considered. Intriguingly, only one of the free parameters, $\eta^\prime$, needed to be tweaked for the time series analysis. Therefore, the results suggest that the SSD inversion model works sufficiently well under the complex hydrometeorological situations.
 
-As part of future work, it is recommended to use the multi-baseline Pol-InSAR technique \citep{Cloude2010} wherein $k_z$ can be simulated (instead of scaling by $\eta^\prime$) after an appropriate accuracy assessment \citep{Kumar2017}. Similarly, the effect of different window shapes (square or rectangular) and sizes can be considered for the ensemble averaging operation. This sort of sensitivity analysis will help in deciding optimal window structures separately for each model. Moreover, it is recommended to apply scattering mechanism based masks in conjunction with snow masks prepared from the high resolution optical datasets such as those provided by Sentinel-2 \citep{Zhu2015}. In addition, the prior classification of the dry and wet snow including the preparation of snow cover maps \citep{Leinss2018, Thakur2012, Zhu2015} as necessary preprocessing steps will certainly improve the uncertainty assessment process.
+As part of future work, it is recommended to use the multi-baseline Pol-InSAR technique \citep{Cloude2010} wherein $k_z$ can be simulated (instead of scaling by $\eta^\prime$) after an appropriate accuracy assessment \citep{Kumar2017}. Similarly, the effect of different window shapes (square or rectangular) and sizes can be considered for the ensemble averaging operation. This sort of sensitivity analysis will help in deciding optimal window structures. Moreover, it is recommended to apply scattering mechanism based masks in conjunction with snow masks prepared from the high resolution optical datasets such as those provided by Sentinel-2 \citep{Zhu2015}. In addition, the prior classification of the dry and wet snow including the preparation of snow cover maps \citep{Leinss2018, Thakur2012, Zhu2015} as necessary preprocessing steps will certainly improve the uncertainty assessment process.
 
 Also, the use of the newer multi-temporal high resolution L-band datasets acquired by the upcoming SAR missions \citep{Tridon2018, Rosen2017} is recommended to further verify and validate these models. Moreover, radar altimeters such as the Ka-band InSAR altimeter could potentially improve the SD and SWE estimates, and could also be used for operational snow depth monitoring on a large-scale \citep{Hensley2016, Kim2018, Moller2011, Speziali2018}.
 
