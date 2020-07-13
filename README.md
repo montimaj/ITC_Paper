@@ -1,5 +1,5 @@
 # ITC_Paper
-Journal article based on MSc thesis
+Journal article based on MSc thesis (https://library.itc.utwente.nl/papers_2019/msc/gfm/majumdar.pdf)
 
 Under review at Elsevier Cold Regions Science and Technology
 
